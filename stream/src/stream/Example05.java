@@ -5,6 +5,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
+/*
+ * Stream sorted() 사용법
+ */
 public class Example05 {
 
   public static void main(String[] args) {
