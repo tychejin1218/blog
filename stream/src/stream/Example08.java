@@ -21,16 +21,20 @@ public class Example08 {
   }
 
   /*
-   * anyMatch()는 조건에 만족하는 스트림의 요소가 하나라도 존재하면 true 아니면 false를 리턴
+   * anyMatch()
+   *  - 해당 스트림의 일부 요소가 특정 조건을 만족할 경우 true, 만족하지 않을 경우 false를 반환
+   *  - 해당 스트림에서 일부 요소가 문자열 'A'로 시작하는지 확인
    */
   public static void createStreamAnyMacth() {
-    List<String> strings = Arrays.asList("A1", "A2", "A3", "A4", "A5");
+    List<String> strings = Arrays.asList("A1", "A2", "B1", "B2");
     boolean isMatch = strings.stream().anyMatch(s -> s.startsWith("A"));
     System.out.println("anyMatch : " + isMatch);
   }
 
   /*
-   * allMatch()는 스트림의 모든 요소가 조건에 모두 만족하면 true 아니면 false를 리턴
+   * allMatch()
+   *  - 해당 스트림의 모든 요소가 특정 조건을 만족할 경우 true, 만족하지 않을 경우 false를 반환
+   *  - 해당 스트림에서 모든 요소가 문자열 'A'로 시작하는지 확인
    */
   public static void createStreamAllMatch() {
     List<String> strings = Arrays.asList("A1", "A2", "A3", "A4", "A5");
@@ -39,7 +43,9 @@ public class Example08 {
   }
 
   /*
-   * noneMatch()는 스트림의 모든 요소가 조건에 만족하지 않으면 true 아니면 false를 리턴
+   * noneMatch()
+   *  - 해당 스트림의 모든 요소가 특정 조건에 만족하지 않을 경우 true , 만족할 경우 false를 반환
+   *  - 해당 스트림에서 모든 요소가 문자열 'A'로 시작하지 않는지 확인
    */
   public static void createStreamNoneMatch() {
     List<String> strings = Arrays.asList("B1", "B2", "B3", "B4", "B5");
