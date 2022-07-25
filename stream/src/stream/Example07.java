@@ -25,7 +25,8 @@ public class Example07 {
   }
 
   /*
-   * findFirst()는 스트림에서 첫번째 요소를 찾아서 Optional 타입으로 리턴
+   * findFirst()
+   *  - 해당 스트림에서 첫 번째 요소를 참조하는 Optional 객체를 반환
    */
   public static void createStreamFindFirst() {
     List<String> strings = Arrays.asList("A1", "A2", "A3", "A4", "A5");
@@ -36,7 +37,8 @@ public class Example07 {
   }
 
   /*
-   * findAny()는 스트림에서 첫번째 요소를 찾아서 Optional 타입으로 리턴
+   * findAny()
+   *  - 해당 스트림에서 첫 번째 요소를 참조하는 Optional 객체를 반환
    *  - findFirst()와 findAny()의 차이는 병렬 처리 시 발생
    */
   public static void createStreamFindAny() {
@@ -48,7 +50,8 @@ public class Example07 {
   }
 
   /*
-   * FindFirst()는 병렬 처리 시에도 첫번재 요소를 찾아서 Optional 타입으로 리턴
+   * findFirst()
+   *  - 병렬 처리 시에도 첫 번재 요소를 참조하는 Optional 객체를 반환
    */
   public static void createStreamParallelFindFirst() {
     List<String> strings = Arrays.asList("A1", "A2", "A3", "A4", "A5");
@@ -60,7 +63,8 @@ public class Example07 {
   }
 
   /*
-   * FindAny()는 병렬 처리 시 가장 먼저 찾은 요소를 찾아서 Optional 타입으로 리턴
+   * findAny()
+   *  - 병렬 처리 시 가장 먼저 찾은 요소를 참조하는 Optional 객체를 반환
    */
   public static void createStreamParallelFindAny() {
     List<String> strings = Arrays.asList("A1", "A2", "A3", "A4", "A5");
