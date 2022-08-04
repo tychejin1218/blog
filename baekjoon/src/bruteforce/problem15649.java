@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/*
+ * 백준 온라인 저지(Baekjoon Online Judge) 15649번 문제
+ *  - https://www.acmicpc.net/problem/15649
+ */
 public class problem15649 {
 
   // 첫째 줄에 자연수 N과 M을 저장하기 위한 변수
