@@ -1,31 +1,13 @@
 package codility;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
-
 public class lesson01_1 {
 
-  static int N;
-
   public static void main(String[] args) {
-
-    try {
-
-      BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-      StringTokenizer st = new StringTokenizer(br.readLine());
-
-      N = Integer.parseInt(st.nextToken());
-
-      int result = solution(N);
-
-      System.out.println(result);
-
-      br.close();
-
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+    System.out.println("529 : " + solution(529));
+    System.out.println("20 : " + solution(20));
+    System.out.println("15 : " + solution(15));
+    System.out.println("1041 : " + solution(1041));
+    System.out.println("32 : " + solution(32));
   }
 
   // [Codility] Lesson1. BinaryGap
