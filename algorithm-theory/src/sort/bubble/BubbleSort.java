@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * 버블 정렬
+ * <p>데이터 갯수에 상관없이 버블 정렬 알고리즘 방식으로 정렬하기</p>
+ */
 public class BubbleSort {
 
   public List<Integer> sort(List<Integer> dataList) {
