@@ -1,0 +1,10 @@
+/*CREATE USER daekyo PASSWORD 'password1!' SUPERUSER CREATEDB;*/
+
+DROP TABLE IF EXISTS todo;
+
+CREATE TABLE todo (
+    id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255),
+    description VARCHAR(255),
+    completed BOOLEAN
+);
