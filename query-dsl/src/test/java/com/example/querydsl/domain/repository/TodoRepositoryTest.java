@@ -48,7 +48,7 @@ class TodoRepositoryTest {
     List<Todo> todos = todoRepository.getTodos(todo);
 
     // Then
-    log.debug("todos:[{}]", todos);
+    log.info("todos:[{}]", todos);
     assertTrue(!todos.isEmpty());
   }
 
