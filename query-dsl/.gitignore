@@ -39,5 +39,8 @@ out/
 ### Log ##
 /logs/
 
+### docker-compose ##
+/src/main/resources/docker/compose/data/
+
 ### QueryDSL Generated File ###
 /src/main/generated/
