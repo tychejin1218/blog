@@ -3,7 +3,6 @@ package com.example.datasourcereplication.service;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.example.datasourcereplication.dto.TodoRequestDto;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;

@@ -4,7 +4,6 @@ import com.example.datasourcereplication.domain.entity.Todo;
 import com.example.datasourcereplication.domain.repository.TodoRepository;
 import com.example.datasourcereplication.dto.TodoRequestDto;
 import java.util.List;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
