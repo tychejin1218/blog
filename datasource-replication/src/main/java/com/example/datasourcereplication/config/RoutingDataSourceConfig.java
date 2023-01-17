@@ -1,5 +1,6 @@
 package com.example.datasourcereplication.config;
 
+import com.example.datasourcereplication.common.type.DataSourceEnum;
 import java.util.HashMap;
 import java.util.Map;
 import javax.sql.DataSource;
@@ -7,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -15,6 +17,11 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Slf4j
+@EnableJpaRepositories(
+    basePackages = "com.example.datasourcereplication.domain.repository",
+    entityManagerFactoryRef = "entityManagerFactory",
+    transactionManagerRef = "transactionManager"
+)
 @Configuration
 public class RoutingDataSourceConfig {
 
@@ -31,8 +38,8 @@ public class RoutingDataSourceConfig {
     RoutingDataSource routingDataSource = new RoutingDataSource();
 
     Map<Object, Object> dataSourceMap = new HashMap<>();
-    dataSourceMap.put("master", masterDataSource);
-    dataSourceMap.put("salve", slaveDataSource);
+    dataSourceMap.put(DataSourceEnum.MASTER, masterDataSource);
+    dataSourceMap.put(DataSourceEnum.SLAVE, slaveDataSource);
 
     routingDataSource.setTargetDataSources(dataSourceMap);
     routingDataSource.setDefaultTargetDataSource(masterDataSource);
@@ -66,7 +73,7 @@ public class RoutingDataSourceConfig {
     return hibernateJpaVendorAdapter;
   }
 
-  @Bean("platformTransactionManager")
+  @Bean("transactionManager")
   public PlatformTransactionManager platformTransactionManager(
       @Qualifier("entityManagerFactory") LocalContainerEntityManagerFactoryBean entityManagerFactory) {
     JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();

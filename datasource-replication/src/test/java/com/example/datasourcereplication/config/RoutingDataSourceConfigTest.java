@@ -2,9 +2,9 @@ package com.example.datasourcereplication.config;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.example.datasourcereplication.common.type.DataSourceEnum;
 import java.lang.reflect.Method;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,7 +32,7 @@ class RoutingDataSourceConfigTest {
 
     // Then
     log.info("object : [{}]", object);
-    assertEquals("master", object.toString());
+    assertEquals(DataSourceEnum.MASTER.toString(), object.toString());
   }
 
   @Transactional(readOnly = true)
@@ -51,6 +51,6 @@ class RoutingDataSourceConfigTest {
 
     // Then
     log.info("object : [{}]", object);
-    assertEquals("slave", object.toString());
+    assertEquals(DataSourceEnum.SLAVE.toString(), object.toString());
   }
 }

@@ -45,7 +45,7 @@ class DataSourceConfigTest {
   @DisplayName("SlaveDataSource 설정 테스트")
   @Test
   void slaveDataSourceTest(
-      @Qualifier("slaveDataSource") final DataSource masterDataSource) {
+      @Qualifier("slaveDataSource") final DataSource slaveDataSource) {
 
     // Given
     String driverClassName = environment.getProperty("spring.datasource.slave.hikari.driver-class-name");
@@ -54,7 +54,7 @@ class DataSourceConfigTest {
     String username = environment.getProperty("spring.datasource.slave.hikari.username");
 
     // When
-    try (HikariDataSource hikariDataSource = (HikariDataSource) masterDataSource) {
+    try (HikariDataSource hikariDataSource = (HikariDataSource) slaveDataSource) {
 
       // Then
       log.info("hikariDataSource : [{}]", hikariDataSource);
