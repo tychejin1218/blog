@@ -1,6 +1,6 @@
 package com.example.datasourcereplication.config;
 
-import com.example.datasourcereplication.common.type.DataSourceEnum;
+import com.example.datasourcereplication.common.type.DataSourceType;
 import java.util.HashMap;
 import java.util.Map;
 import javax.sql.DataSource;
@@ -38,8 +38,8 @@ public class RoutingDataSourceConfig {
     RoutingDataSource routingDataSource = new RoutingDataSource();
 
     Map<Object, Object> dataSourceMap = new HashMap<>();
-    dataSourceMap.put(DataSourceEnum.MASTER, masterDataSource);
-    dataSourceMap.put(DataSourceEnum.SLAVE, slaveDataSource);
+    dataSourceMap.put(DataSourceType.MASTER, masterDataSource);
+    dataSourceMap.put(DataSourceType.SLAVE, slaveDataSource);
 
     routingDataSource.setTargetDataSources(dataSourceMap);
     routingDataSource.setDefaultTargetDataSource(masterDataSource);
