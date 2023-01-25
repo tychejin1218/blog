@@ -1,0 +1,59 @@
+version: "3"
+services:
+
+  # Redis Cluster 설정
+  redis-cluster:
+    image: redis:6.2.7
+    container_name: redis-cluster
+    ports:
+      - "6301:6301"
+      - "6302:6302"
+      - "6303:6303"
+    volumes:
+      - ./config/redis/redis-cluster.conf:/usr/local/etc/redis.conf
+    command: redis-server /usr/local/etc/redis.conf
+
+  redis-node1:
+    network_mode: "service:redis-cluster"
+    image: redis:6.2.7
+    container_name: redis-node1
+    volumes:
+      - ./redis-node1.conf:/usr/local/etc/redis.conf
+    command: redis-server /usr/local/etc/redis.conf
+
+  redis-node2:
+    network_mode: "service:redis-cluster"
+    image: redis:6.2.7
+    container_name: redis-node2
+    volumes:
+      - ./redis-node2.conf:/usr/local/etc/redis.conf
+    command: redis-server /usr/local/etc/redis.conf
+
+  redis-node3:
+    network_mode: "service:redis-cluster"
+    image: redis:6.2.7
+    container_name: redis-node3
+    volumes:
+      - ./redis-node3.conf:/usr/local/etc/redis.conf
+    command: redis-server /usr/local/etc/redis.conf
+
+  redis-cluster-entry:
+    network_mode: "service:redis-cluster"
+    image: redis:6.2.7
+    container_name: redis-cluster-entry
+    command: redis-cli --cluster create 127.0.0.1:6301 127.0.0.1:6302 127.0.0.1:6303 --cluster-yes
+    depends_on:
+      - redis-cluster
+      - redis-node1
+      - redis-node2
+      - redis-node3
+
+  # P3X Redis UI 설정
+  registry:
+    image: patrikx3/p3x-redis-ui:2022.10.105
+    restart: always
+    container_name: p3x-redis-ui
+    ports:
+      - "7843:7843"
+    volumes:
+      - ./settings:/settings

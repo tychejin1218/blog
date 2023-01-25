@@ -1,0 +1,4 @@
+# Redis ??
+redis:
+  cluster:
+    nodes: localhost:6301, localhost:6302, localhost:6303
