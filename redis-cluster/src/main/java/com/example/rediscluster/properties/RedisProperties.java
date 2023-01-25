@@ -1,4 +1,4 @@
-package com.example.rediscluster;
+package com.example.rediscluster.properties;
 
 
 import lombok.Getter;
