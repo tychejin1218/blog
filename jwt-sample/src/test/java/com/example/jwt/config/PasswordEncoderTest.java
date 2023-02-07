@@ -18,7 +18,7 @@ public class PasswordEncoderTest {
   @Autowired
   private PasswordEncoder passwordEncoder;
 
-  @DisplayName("비밀번호 단방향 암호화 확인")
+  @DisplayName("PasswordEncoder 단방향 암호화 테스트")
   @Test
   void testPasswordEncoder() {
 

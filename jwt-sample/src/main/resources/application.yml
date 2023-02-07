@@ -1,22 +1,29 @@
+# SERVER 설정
 server:
   port: 9090
 
+# SPRING 설정
 spring:
+  # H2 설정
   h2:
     console:
       enabled: true
       path: /h2-console
 
+  # DataBase 설정
   datasource:
     url: jdbc:h2:mem:testdb
     driver-class-name: org.h2.Driver
     username: sa
     password:
 
+  # JPA 설정
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+    # data.sql를 사용하여 Hibernate에 의해 생성된 테이블에 데이터를 추가하기 위해 true로 설정
     defer-datasource-initialization: true
     hibernate:
+      # 시작 시점에 기존 테이블을 삭제한 후 테이블을 생성, 종료 시점에 테이블 삭제
       ddl-auto: create-drop
     properties:
       hibernate:
@@ -25,7 +32,7 @@ spring:
 
 jwt:
   header: Authorization
-  secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
+  secret: c3ByaW5nX3NlY3VyaXR5X3dpdGhfanNvbl93ZWJfdG9rZW5fc2VjcmV0X2tleQ==
   token-validity-in-seconds: 86400
 
 logging:
