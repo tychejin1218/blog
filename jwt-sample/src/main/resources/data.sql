@@ -1,0 +1,14 @@
+INSERT
+  INTO MEMBER (ID, NAME, PASSWORD, ENABLED)
+VALUES (1, 'admin', '$2a$10$/87Z0rC1OSRdUbYlxFmrpuBo0/YZ0kK6odNQSCbBPpVRxz5P3bfqq', 1),
+       (2, 'user', '$2a$10$/87Z0rC1OSRdUbYlxFmrpuBo0/YZ0kK6odNQSCbBPpVRxz5P3bfqq', 1);
+
+INSERT
+  INTO ROLE (ID, NAME)
+VALUES (1, 'ROLE_ADMIN'),
+       (2, 'ROLE_USER');
+
+INSERT
+  INTO MEMBER_ROLE (MEMBER_ID, ROLE_ID)
+VALUES (1, 1),
+       (2, 2);
