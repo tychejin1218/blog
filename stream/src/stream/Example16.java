@@ -10,16 +10,16 @@ public class Example16 {
   public static void main(String[] args) {
 
     System.out.println("1. Array(int array)를 List로 변환");
-    convertListToArray01();
+    convertArrayToList01();
 
     System.out.println("2. Array(Integer array)를 List로 변환");
-    convertListToArray02();
+    convertArrayToList02();
 
     System.out.println("3. Array(String)를 List로 변환");
-    convertListToArray03();
+    convertArrayToList03();
   }
 
-  public static void convertListToArray01() {
+  public static void convertArrayToList01() {
     int[] numberArr = new int[] {1, 2, 3, 4, 5};
     List<Integer> numberList = Arrays.stream(numberArr)
         .boxed()
@@ -27,7 +27,7 @@ public class Example16 {
     System.out.println(numberList);
   }
 
-  public static void convertListToArray02() {
+  public static void convertArrayToList02() {
     Integer[] numberArr = new Integer[] {1, 2, 3, 4, 5};
 
     List<Integer> numberList01 = Arrays.asList(numberArr);
@@ -41,7 +41,7 @@ public class Example16 {
     System.out.println(numberList03);
   }
 
-  public static void convertListToArray03() {
+  public static void convertArrayToList03() {
     String[] strArr = new String[] {"a", "b", "c", "d", "e"};
 
     List<String> strList01 = Arrays.asList(strArr);
