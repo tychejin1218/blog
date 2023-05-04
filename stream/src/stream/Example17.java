@@ -14,7 +14,7 @@ public class Example17 {
   /**
    * 1. for문을 이용하여 List를 Map으로 변환
    */
-  public Map convertMapToList01(List<Language> languageList) {
+  public Map convertListToMap01(List<Language> languageList) {
 
     Map<Integer, Language> languageMap = new HashMap<>();
     for (Language language : languageList) {
@@ -30,7 +30,7 @@ public class Example17 {
    * Stream.collect()과 Collectors.toMap()을 이용하여 다음과 같이 List를 Map으로 변환할 수 있습니다.
    * Function.identity()는 인자로 들어온 값을 그대로 반환합니다.
    */
-  public Map convertMapToList02(List<Language> languageList) {
+  public Map convertListToMap02(List<Language> languageList) {
 
     Map<Integer, Language> languageMap = languageList.stream()
         .collect(Collectors.toMap(Language::getId, Function.identity()));

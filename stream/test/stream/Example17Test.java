@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import stream.Example17;
 import stream.Example17.Language;
 
 class Example17Test {
@@ -28,7 +27,7 @@ class Example17Test {
   public void testConvertMapToList01() {
 
     // Given & When
-    Map<Integer, Language> languageMap = new Example17().convertMapToList01(languageList);
+    Map<Integer, Language> languageMap = new Example17().convertListToMap01(languageList);
 
     // Then
     assertIterableEquals(languageList, languageMap.values());
@@ -38,7 +37,7 @@ class Example17Test {
   public void testConvertMapToList02() {
 
     // Given & When
-    Map<Integer, Language> languageMap = new Example17().convertMapToList02(languageList);
+    Map<Integer, Language> languageMap = new Example17().convertListToMap02(languageList);
 
     // Then
     assertIterableEquals(languageList, languageMap.values());
