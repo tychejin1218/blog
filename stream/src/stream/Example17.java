@@ -38,7 +38,7 @@ public class Example17 {
     return languageMap;
   }
 
-  static class Language {
+  public static class Language {
 
     public Integer id;
     public String language;
