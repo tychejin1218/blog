@@ -34,8 +34,8 @@ public class Example18_2 {
   /**
    * 방법 02. Arrays.asList() 메서드를 사용
    *
-   * <p>Arrays.asList()는 고정된 크기를 반환하기 때문에 원소를 추가하거나 삭제가 불가능합니다. 또한 배열의 값이 수정되면 리스트 값도 수정됩니다.</p>
-   * <p>리스트의 값을 추가하거나 삭제가 필요한 경우, ArrayList 생성자 함수를 사용하여 배열을 리스트로 변환하시면 됩니다.</p>
+   * <p>Arrays.asList()를 사용하면 java.util.Arrays 패키지에 존재하는 고정된 크기의 ArrayList를 반환하기 때문에 값을 추가하거나 삭제할 수 없습니다. </p>
+   * <p>리스트의 값을 추가하거나 삭제가 필요한 경우, ArrayList 생성자 함수의 매개변수로 Arrays.asList() 메서드를 전달하여 java.util 패키지에 ArrayList를 반환받으시면 됩니다.</p>
    */
   public static <T> List<T> convertArrayToList02(T arr[]) {
     List<T> list = new ArrayList<>(Arrays.asList(arr));

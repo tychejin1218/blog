@@ -17,14 +17,14 @@ public class Example18_4 {
     String arr[] = {"Python", "C", "Java", "C++", "Visual Basic"};
     System.out.println("배열: " + Arrays.toString(arr));
 
-    List<String> list = convertArrayToList04(arr);
+    List<String> list = convertArrayToList(arr);
     System.out.println("리스트:" + list);
   }
 
   /**
    * 방법 04. Java8 Stream API를 사용
    */
-  public static <T> List<T> convertArrayToList04(T arr[]) {
+  public static <T> List<T> convertArrayToList(T arr[]) {
     return Arrays.stream(arr).collect(Collectors.toList());
   }
 }

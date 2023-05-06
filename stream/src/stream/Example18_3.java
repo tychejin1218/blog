@@ -18,7 +18,7 @@ public class Example18_3 {
     String arr[] = {"Python", "C", "Java", "C++", "Visual Basic"};
     System.out.println("배열: " + Arrays.toString(arr));
 
-    List<String> list = convertArrayToList03(arr);
+    List<String> list = convertArrayToList(arr);
     System.out.println("리스트:" + list);
   }
 
@@ -27,7 +27,7 @@ public class Example18_3 {
    *
    * <p>java.util 패키지에 속하는 Java Collections 클래스의 메서드입니다.</p>
    */
-  public static <T> List<T> convertArrayToList03(T arr[]) {
+  public static <T> List<T> convertArrayToList(T arr[]) {
     List<T> list = new ArrayList<>();
     Collections.addAll(list, arr);
     return list;
