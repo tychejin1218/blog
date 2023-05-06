@@ -38,17 +38,6 @@ public class Example18 {
     return list;
   }
 
-  public static void convertArrayToList2() {
-
-    String arr[] = {"Python", "C", "Java", "C++", "Visual Basic"};
-    System.out.println("배열: " + Arrays.toString(arr));
-
-    List<String> list = Arrays.asList(arr);
-
-    System.out.println("리스트:" + list);
-    System.out.println(list);
-  }
-
   /**
    * 방법 03. Collection.addAll() 메서드를 사용
    *
@@ -66,5 +55,4 @@ public class Example18 {
   public static <T> List<T> convertArrayToList04(T arr[]) {
     return Arrays.stream(arr).collect(Collectors.toList());
   }
-
 }
