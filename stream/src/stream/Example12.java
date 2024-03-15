@@ -21,7 +21,7 @@ public class Example12 {
     System.out.println("2.일반적인 중첩 for문");
     createStreamNestedFor01();
 
-    System.out.println("3.stream을 이용한 중첩 for문");
+    System.out.println("3.stream을 사용한 중첩 for문");
     createStreamNestedFor02();
   }
 

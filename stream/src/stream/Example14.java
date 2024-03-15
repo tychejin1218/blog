@@ -16,7 +16,7 @@ public class Example14 {
     createStreamDoubleAverage();
   }
 
-  /*
+  /**
    * sum()
    * IntStream이나 DoubleStrem과 같은 기본 타입 스트림의 모든 요소에 합을 반환
    *
@@ -27,7 +27,7 @@ public class Example14 {
     System.out.println(stream.sum());
   }
 
-  /*
+  /**
    * Double 타입 스트림의 평균
    */
   public static void createStreamDoubleSum() {
@@ -35,7 +35,7 @@ public class Example14 {
     System.out.println(stream.sum());
   }
 
-  /*
+  /**
    * average()
    * IntStream이나 DoubleStrem과 같은 기본 타입 스트림의 모든 요소에 평균을 각 기본 타입으로 래핑된 Optional 객체를 반환
    *
@@ -46,7 +46,7 @@ public class Example14 {
     System.out.println(stream.average().getAsDouble());
   }
 
-  /*
+  /**
    * Double 타입 스트림의 평균
    */
   public static void createStreamDoubleAverage() {

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-/*
+/**
  * Stream Collectors.toList(), Collectors.toSet(), Collectors.toMap() 사용법
  */
 public class Example09 {
@@ -38,7 +38,7 @@ public class Example09 {
     createStreamToMinBy();
   }
 
-  /*
+  /**
    * Collectors.toList()
    *  - 스트림 요소를 List로 반환   *
    */
@@ -51,7 +51,7 @@ public class Example09 {
     strings.forEach(System.out::println);
   }
 
-  /*
+  /**
    * Collectors.toSet()
    *  - 스트림 요소를 Set으로 반환
    */
@@ -64,7 +64,7 @@ public class Example09 {
     stringSet.forEach(System.out::println);
   }
 
-  /*
+  /**
    * Collectors.toSet()
    *  - 스트림 요소를 Map으로 반환
    */
@@ -85,7 +85,7 @@ public class Example09 {
     );
   }
 
-  /*
+  /**
    * Collectors.toSet()
    *  - 스트림 요소를 Map으로 반환
    */
@@ -128,7 +128,7 @@ public class Example09 {
     }
   }
 
-  /*
+  /**
    * Collectors.joining()
    *  - 해당 스트림의 요소를 ', '을 기준으로 합쳐서 문자열로 반환
    */
@@ -138,7 +138,7 @@ public class Example09 {
     System.out.println("', '을 구분으로 합친 문자열 : " + result);
   }
 
-  /*
+  /**
    * Collectors.partitioningBy()
    *  - 해당 스트림의 요소의 글자 수에 따라 짝수와 홀수 리스트로 반환
    */
@@ -150,7 +150,7 @@ public class Example09 {
     System.out.println("글자 수가 홀수인 요소 : " + patition.get(false));
   }
 
-  /*
+  /**
    * Collectors.minBy()
    *  - 해당 스트림에서 순위가 가장 높은(rank:1) 요소를 반환
    */

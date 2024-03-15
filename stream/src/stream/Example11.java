@@ -2,7 +2,7 @@ package stream;
 
 import java.util.stream.Stream;
 
-/*
+/**
  * Stream peek() 사용법
  */
 public class Example11 {
@@ -16,7 +16,7 @@ public class Example11 {
     createStreamPeek();
   }
 
-  /*
+  /**
    * peek() 메소드는 결과 스트림으로부터 요소를 소모하여 추가로 명시된 동작을 수행합니다.
    * 또한, 원본 스트림에서 요소로를 소모하지 않으므로, 주로 연산과 연산 사이에 결과를 확인할 때 사용합니다.
    *

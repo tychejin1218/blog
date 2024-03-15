@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-/*
+/**
  * Stream concat() 사용법
  */
 public class Example04 {
@@ -15,7 +15,7 @@ public class Example04 {
     createStreamConcat();
   }
 
-  /*
+  /**
    * concat(a, b)은 첫 번째 스트림과 두 번째 스트림을 연결하여 스트림을 생성하여 리턴
    */
   public static void createStreamConcat() {

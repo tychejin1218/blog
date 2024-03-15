@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-/*
+/**
  * Stream findFirst(), findAny() 사용법
  */
 public class Example07 {
@@ -24,7 +24,7 @@ public class Example07 {
     createStreamParallelFindAny();
   }
 
-  /*
+  /**
    * findFirst()
    *  - 해당 스트림에서 첫 번째 요소를 참조하는 Optional 객체를 반환
    */
@@ -36,7 +36,7 @@ public class Example07 {
     stringFirst.ifPresent(System.out::println);
   }
 
-  /*
+  /**
    * findAny()
    *  - 해당 스트림에서 첫 번째 요소를 참조하는 Optional 객체를 반환
    *  - findFirst()와 findAny()의 차이는 병렬 처리 시 발생
@@ -49,7 +49,7 @@ public class Example07 {
     stringAny.ifPresent(System.out::println);
   }
 
-  /*
+  /**
    * findFirst()
    *  - 병렬 처리 시에도 첫 번재 요소를 참조하는 Optional 객체를 반환
    */
@@ -62,7 +62,7 @@ public class Example07 {
     stringAny.ifPresent(System.out::println);
   }
 
-  /*
+  /**
    * findAny()
    *  - 병렬 처리 시 가장 먼저 찾은 요소를 참조하는 Optional 객체를 반환
    */
