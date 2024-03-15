@@ -9,12 +9,10 @@ public class Example11 {
 
   public static void main(String[] args) {
 
-    System.out.println("1.peek() 사용법 : 동작하지 않음");
-
-    createStreamPeekNotWorking();
+//    System.out.println("1.peek() 사용법 : 동작하지 않음");
+//    createStreamPeekNotWorking();
 
     System.out.println("1.peek() 사용법");
-
     createStreamPeek();
   }
 
@@ -36,6 +34,6 @@ public class Example11 {
     Stream<Integer> stream = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
     stream.filter(s -> s % 3 == 0)
         .peek(s -> System.out.println("원본 스트림 : " + s))
-        .forEach(System.out::println);
+        .forEach(s -> {});
   }
 }

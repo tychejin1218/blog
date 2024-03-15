@@ -60,7 +60,7 @@ public class Example01 {
    */
   public static void createStreamEmpty() {
     Stream<String> stream = Stream.empty();
-    stream.forEach(System.out::println);
+    System.out.println(stream.count());
   }
 
   /*
