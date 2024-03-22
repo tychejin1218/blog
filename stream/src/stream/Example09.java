@@ -40,7 +40,7 @@ public class Example09 {
 
   /**
    * Collectors.toList()
-   *  - 스트림 요소를 List로 반환   *
+   *  - 스트림 요소를 List로 반환
    */
   public static void createStreamToList() {
     Stream<String> stream = Stream.of(
@@ -109,25 +109,6 @@ public class Example09 {
     );
   }
 
-  static class Language {
-
-    public Integer rank;
-    public String language;
-
-    Language(Integer rank, String language) {
-      this.rank = rank;
-      this.language = language;
-    }
-
-    public Integer getRank() {
-      return rank;
-    }
-
-    public String getLanguage() {
-      return language;
-    }
-  }
-
   /**
    * Collectors.joining()
    *  - 해당 스트림의 요소를 ', '을 기준으로 합쳐서 문자열로 반환
@@ -167,5 +148,24 @@ public class Example09 {
         Collectors.minBy((o1, o2) -> o1.getRank() - o2.getRank())
     );
     System.out.println(opLanguage.get().getLanguage());
+  }
+
+  static class Language {
+
+    public Integer rank;
+    public String language;
+
+    Language(Integer rank, String language) {
+      this.rank = rank;
+      this.language = language;
+    }
+
+    public Integer getRank() {
+      return rank;
+    }
+
+    public String getLanguage() {
+      return language;
+    }
   }
 }

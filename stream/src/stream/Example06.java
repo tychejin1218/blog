@@ -20,9 +20,9 @@ public class Example06 {
     System.out.println("2.max() 사용법 : 해당 스트림에서 가장 큰 값");
     createStreamIntMax();
 
-    System.out.println("3.max() 사용법 : 해당 스트림에서 가장 큰 값");
+    System.out.println("3.min() 사용법 : 해당 스트림에서 가장 작은 값");
     createStreamIntMin();
-    
+
     System.out.println("4.max() 사용법 : 해당 스트림에서 가장 큰 값(알파벳 순서)");
     createStreamStringMax();
 
