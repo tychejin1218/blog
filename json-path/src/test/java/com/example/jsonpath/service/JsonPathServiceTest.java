@@ -1,11 +1,13 @@
 package com.example.jsonpath.service;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.example.jsonpath.dto.BookDto;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
@@ -138,6 +140,32 @@ class JsonPathServiceTest {
         () -> assertEquals("Nigel Rees", book.getAuthor()),
         () -> assertEquals("Sayings of the Century", book.getTitle()),
         () -> assertEquals(8.95, book.getPrice())
+    );
+  }
+
+  @Order(7)
+  @DisplayName("getPathList_JSON 객체에서 경로 리스트를 조회")
+  @Test
+  void testGetPathList() {
+
+    // Given
+    String fileName = "json/store.json";
+    String jsonPath = "$..author";
+
+    List<String> expectedPathList = Arrays.asList(
+        "$['store']['book'][0]['author']",
+        "$['store']['book'][1]['author']",
+        "$['store']['book'][2]['author']",
+        "$['store']['book'][3]['author']");
+
+    // When
+    List<String> pathList = jsonPathService.getPathList(fileName, jsonPath);
+    log.debug("pathList : {}", pathList);
+
+    // Then
+    assertAll(
+        () -> assertFalse(pathList.isEmpty()),
+        () -> assertArrayEquals(expectedPathList.toArray(), pathList.toArray())
     );
   }
 }

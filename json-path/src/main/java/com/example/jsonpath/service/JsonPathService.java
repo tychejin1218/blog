@@ -7,6 +7,7 @@ import com.example.jsonpath.dto.BookDto;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.Filter;
 import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.Option;
 import com.jayway.jsonpath.ReadContext;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -125,7 +126,7 @@ public class JsonPathService {
     String json = readFileFromClassPath(fileName);
 
     Filter filter = filter(
-      where("category").is("fiction").and("price").gt(10D)
+        where("category").is("fiction").and("price").gt(10D)
     );
 
     // 조건에 맞는 책들을 JSON 데이터에서 추출하여 리스트에 저장
@@ -156,4 +157,28 @@ public class JsonPathService {
     return book;
   }
 
+  /**
+   * JSON 객체에서 경로 리스트를 조회
+   *
+   * @param fileName JSON 파일명
+   * @param jsonPath JSONPath 문자열
+   * @return 경로 리스트 반환
+   */
+  public List<String> getPathList(String fileName, String jsonPath) {
+
+    // Option.AS_PATH_LIST는 JsonPath 표현식에 매칭되는 모든 경로를 리스트의 형태로 반환
+    Configuration conf = Configuration.builder()
+        .options(Option.AS_PATH_LIST)
+        .build();
+
+    // JSON 문자열
+    String json = readFileFromClassPath(fileName);
+
+    List<String> pathList = JsonPath
+        .using(conf)
+        .parse(json)
+        .read(jsonPath);
+
+    return pathList;
+  }
 }
