@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: model-mapper
+
+logging:
+  level:
+    root: DEBUG
