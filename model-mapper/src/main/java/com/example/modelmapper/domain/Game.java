@@ -1,6 +1,5 @@
-package com.example.modelmapper.dto;
+package com.example.modelmapper.domain;
 
-import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,8 +13,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class LittleD1DepartDto {
+public class Game {
 
-  private LocalDateTime d1DateTime;
-  private Boolean d1Boolean;
+  private Long id;
+  private String name;
+  private Long timestamp;
 }

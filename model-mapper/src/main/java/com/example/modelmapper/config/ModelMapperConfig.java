@@ -8,6 +8,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ModelMapperConfig {
 
+  /**
+   * 'LOOSE' 매칭 전략을 적용한 ModelMapper 빈을 설정
+   *
+   * @return ModelMapper 객체를 반환
+   */
   @Bean
   public ModelMapper modelMapperLoose() {
     ModelMapper modelMapper = new ModelMapper();
@@ -18,6 +23,11 @@ public class ModelMapperConfig {
     return modelMapper;
   }
 
+  /**
+   * 'STANDARD' 매칭 전략을 적용한 ModelMapper 빈을 설정
+   *
+   * @return ModelMapper 객체를 반환
+   */
   @Bean
   public ModelMapper modelMapperStandard() {
     ModelMapper modelMapper = new ModelMapper();
@@ -28,6 +38,11 @@ public class ModelMapperConfig {
     return modelMapper;
   }
 
+  /**
+   * 'STRICT' 매칭 전략을 적용한 ModelMapper 빈을 설정
+   *
+   * @return ModelMapper 객체를 반환
+   */
   @Bean
   public ModelMapper modelMapperStrict() {
     ModelMapper modelMapper = new ModelMapper();
