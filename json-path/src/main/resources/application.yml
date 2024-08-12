@@ -1,7 +1,0 @@
-spring:
-  application:
-    name: json-path
-
-logging:
-  level:
-    root: DEBUG
