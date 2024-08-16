@@ -52,7 +52,8 @@ public class JsonPathTest {
   @Test
   public void testGetAuthorsFromJsonFile() {
 
-    //  Given & When
+    // Given & When
+    // book 배열 내의 모든 author 필드를 찾아서 반환
     List<String> authors = JsonPath.read(json, "$.store.book[*].author");
     log.debug("authors : {}", authors);
 
@@ -68,10 +69,11 @@ public class JsonPathTest {
   void testGetAuthorsFromDocument() {
 
     // Given
-    // JSON 문자열을 파싱하여 Document 객체를 생성
+    // JSON 문자열을 Document 객체로 파싱
     Object document = Configuration.defaultConfiguration().jsonProvider().parse(json);
 
     // When
+    // JSONPath를 사용하여 Document 객체에서 작가명을 추출
     List<String> authors = JsonPath.read(document, "$.store.book[*].author");
     log.debug("authors : {}", authors);
 
@@ -87,10 +89,11 @@ public class JsonPathTest {
   void testGetAuthorsFromReadContext() {
 
     // Given
-    // JSON 문자열을 파싱하여 ReadContext 객체를 생성
+    // JSON 문자열을 ReadContext 객체로 파싱
     ReadContext readContext = JsonPath.parse(json);
 
     // When
+    // JSONPath를 사용하여 ReadContext 객체에서 작가명을 추출
     List<String> authors = readContext.read("$.store.book[*].author");
     log.debug("authors : {}", authors);
 
@@ -101,13 +104,12 @@ public class JsonPathTest {
   }
 
   @Order(4)
-  @DisplayName("getBooks"
-      + "_조건(?(@.category == 'fiction' && @.price > 10)을 추가하여 10달러 초과의 비싼 책을 조회")
+  @DisplayName("getBooks_조건을 추가하여 10달러 초과의 비싼 책을 조회")
   @Test
   void testGetBooks() {
 
     // Given & When
-    // 조건에 맞는 책들을 JSON 데이터에서 추출하여 리스트에 저장
+    // JSONPath를 사용하여 조건에 따라 책 정보를 추출
     List<Map<String, Object>> books = JsonPath
         .using(Configuration.defaultConfiguration())
         .parse(json)
@@ -127,12 +129,13 @@ public class JsonPathTest {
   void testGetBooksFiltered() {
 
     // Given
+    // 필터 구문을 사용하여 조건을 정의
     Filter filter = filter(
         where("category").is("fiction").and("price").gt(10D)
     );
 
     // When
-    // 조건에 맞는 책들을 JSON 데이터에서 추출하여 리스트에 저장
+    // JSONPath 필터를 사용하여 조건에 맞는 책 정보를 추출
     List<Map<String, Object>> books = JsonPath
         .using(Configuration.defaultConfiguration())
         .parse(json)
@@ -154,7 +157,7 @@ public class JsonPathTest {
     String jsonPath = "$.store.book[0]";
 
     // When
-    // JSON 문자열을 파싱하고, jsonPath로 주어진 경로의 데이터를 BookDto 객체로 변환
+    // JSON 문자열을 Book 객체로 변환
     Book book = JsonPath.parse(json).read(jsonPath, Book.class);
     log.debug("book : {}", book.toString());
 
@@ -188,6 +191,7 @@ public class JsonPathTest {
         "$['store']['book'][3]['author']");
 
     // When
+    // 경로 리스트를 추출
     List<String> pathList = JsonPath
         .using(conf)
         .parse(json)
