@@ -147,5 +147,4 @@ List<String> pathList = JsonPath.using(conf).parse(json).read(jsonPath);
 ---
 
 ## 참고
-- [JsonPath - Github](https://github.com/json-path/JsonPath)
-- [소스 코드 - Github Repository](https://github.com/tychejin1218/blog/tree/main/json-modules/json-path)
+- JsonPath: [Github Repository 링크](https://github.com/json-path/JsonPath)
