@@ -15,7 +15,7 @@ public class ArrayRemoveDuplicates {
    * @param array 중복된 요소를 제거할 정수형 배열
    * @return 중복이 제거된 새로운 배열, 입력 배열이 null인 경우 null 반환
    */
-  public static int[] removeDuplicatesUsingSet(int[] array) {
+  public int[] removeDuplicatesUsingSet(int[] array) {
 
     if (array == null) {
       return null;
@@ -41,7 +41,7 @@ public class ArrayRemoveDuplicates {
    * @param array 중복된 요소를 제거할 정수형 배열
    * @return 중복이 제거된 새로운 배열, 입력 배열이 null인 경우 null 반환
    */
-  public static int[] removeDuplicatesUsingStream(int[] array) {
+  public int[] removeDuplicatesUsingStream(int[] array) {
 
     if (array == null) {
       return null;
@@ -58,7 +58,7 @@ public class ArrayRemoveDuplicates {
    * @param array 중복된 요소를 제거할 정수형 배열
    * @return 중복이 제거된 새로운 배열, 입력 배열이 null인 경우 null 반환
    */
-  public static int[] removeDuplicatesUsingLoops(int[] array) {
+  public int[] removeDuplicatesUsingLoops(int[] array) {
 
     if (array == null) {
       return null;

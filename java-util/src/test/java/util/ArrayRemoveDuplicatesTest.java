@@ -12,6 +12,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ArrayRemoveDuplicatesTest {
 
+  private final ArrayRemoveDuplicates arrayRemoveDuplicates = new ArrayRemoveDuplicates();
+
   @Order(1)
   @DisplayName("removeDuplicatesUsingSet: 일반 배열에서 중복 제거")
   @Test
@@ -21,7 +23,7 @@ class ArrayRemoveDuplicatesTest {
     int[] array = {1, 2, 3, 4, 1, 2, 5};
 
     // When
-    int[] result = ArrayRemoveDuplicates.removeDuplicatesUsingSet(array);
+    int[] result = arrayRemoveDuplicates.removeDuplicatesUsingSet(array);
 
     // Then
     int[] expected = {1, 2, 3, 4, 5};
@@ -37,7 +39,7 @@ class ArrayRemoveDuplicatesTest {
     int[] nullArray = null;
 
     // When
-    int[] result = ArrayRemoveDuplicates.removeDuplicatesUsingSet(nullArray);
+    int[] result = arrayRemoveDuplicates.removeDuplicatesUsingSet(nullArray);
 
     // Then
     assertNull(result);
@@ -52,7 +54,7 @@ class ArrayRemoveDuplicatesTest {
     int[] emptyArray = {};
 
     // When
-    int[] result = ArrayRemoveDuplicates.removeDuplicatesUsingSet(emptyArray);
+    int[] result = arrayRemoveDuplicates.removeDuplicatesUsingSet(emptyArray);
 
     // Then
     assertArrayEquals(new int[0], result);
@@ -67,7 +69,7 @@ class ArrayRemoveDuplicatesTest {
     int[] array = {1, 2, 3, 4, 1, 2, 5};
 
     // When
-    int[] result = ArrayRemoveDuplicates.removeDuplicatesUsingStream(array);
+    int[] result = arrayRemoveDuplicates.removeDuplicatesUsingStream(array);
 
     // Then
     int[] expected = {1, 2, 3, 4, 5};
@@ -83,7 +85,7 @@ class ArrayRemoveDuplicatesTest {
     int[] nullArray = null;
 
     // When
-    int[] result = ArrayRemoveDuplicates.removeDuplicatesUsingStream(nullArray);
+    int[] result = arrayRemoveDuplicates.removeDuplicatesUsingStream(nullArray);
 
     // Then
     assertNull(result);
@@ -98,7 +100,7 @@ class ArrayRemoveDuplicatesTest {
     int[] emptyArray = {};
 
     // When
-    int[] result = ArrayRemoveDuplicates.removeDuplicatesUsingStream(emptyArray);
+    int[] result = arrayRemoveDuplicates.removeDuplicatesUsingStream(emptyArray);
 
     // Then
     assertArrayEquals(new int[0], result);
@@ -112,7 +114,7 @@ class ArrayRemoveDuplicatesTest {
     int[] array = {1, 2, 3, 4, 1, 2, 5};
 
     // When
-    int[] result = ArrayRemoveDuplicates.removeDuplicatesUsingLoops(array);
+    int[] result = arrayRemoveDuplicates.removeDuplicatesUsingLoops(array);
 
     // Then
     int[] expected = {1, 2, 3, 4, 5};
@@ -127,7 +129,7 @@ class ArrayRemoveDuplicatesTest {
     int[] nullArray = null;
 
     // When
-    int[] result = ArrayRemoveDuplicates.removeDuplicatesUsingLoops(nullArray);
+    int[] result = arrayRemoveDuplicates.removeDuplicatesUsingLoops(nullArray);
 
     // Then
     assertNull(result);
@@ -142,7 +144,7 @@ class ArrayRemoveDuplicatesTest {
     int[] emptyArray = {};
 
     // When
-    int[] result = ArrayRemoveDuplicates.removeDuplicatesUsingLoops(emptyArray);
+    int[] result = arrayRemoveDuplicates.removeDuplicatesUsingLoops(emptyArray);
 
     // Then
     assertArrayEquals(new int[0], result);
