@@ -17,8 +17,13 @@ class ArraySumTest {
   @DisplayName("sumUsingForLoop: 배열 요소들의 합")
   @Test
   public void testSumUsingForLoop() {
+    // Given
     int[] array = {1, 2, 3, 4, 5};
+
+    // When
     int result = arraySum.sumUsingForLoop(array);
+
+    // Then
     assertEquals(15, result);
   }
 
@@ -26,8 +31,13 @@ class ArraySumTest {
   @DisplayName("sumUsingForLoop: 빈 배열 테스트")
   @Test
   public void testSumUsingForLoop_EmptyArray() {
+    // Given
     int[] array = {};
+
+    // When
     int result = arraySum.sumUsingForLoop(array);
+
+    // Then
     assertEquals(0, result);
   }
 
@@ -35,8 +45,13 @@ class ArraySumTest {
   @DisplayName("sumUsingEnhancedForLoop: 배열 요소들의 합")
   @Test
   public void testSumUsingEnhancedForLoop() {
+    // Given
     int[] array = {1, 2, 3, 4, 5};
+
+    // When
     int result = arraySum.sumUsingEnhancedForLoop(array);
+
+    // Then
     assertEquals(15, result);
   }
 
@@ -44,8 +59,13 @@ class ArraySumTest {
   @DisplayName("sumUsingEnhancedForLoop: 빈 배열 테스트")
   @Test
   public void testSumUsingEnhancedForLoop_EmptyArray() {
+    // Given
     int[] array = {};
+
+    // When
     int result = arraySum.sumUsingEnhancedForLoop(array);
+
+    // Then
     assertEquals(0, result);
   }
 
@@ -53,8 +73,13 @@ class ArraySumTest {
   @DisplayName("sumUsingStreams: 배열 요소들의 합")
   @Test
   public void testSumUsingStreams() {
+    // Given
     int[] array = {1, 2, 3, 4, 5};
+
+    // When
     int result = arraySum.sumUsingStreams(array);
+
+    // Then
     assertEquals(15, result);
   }
 
@@ -62,8 +87,13 @@ class ArraySumTest {
   @DisplayName("sumUsingStreams: 빈 배열 테스트")
   @Test
   public void testSumUsingStreams_EmptyArray() {
+    // Given
     int[] array = {};
+
+    // When
     int result = arraySum.sumUsingStreams(array);
+
+    // Then
     assertEquals(0, result);
   }
 
@@ -71,8 +101,13 @@ class ArraySumTest {
   @DisplayName("sumUsingRecursion: 배열 요소들의 합")
   @Test
   public void testSumUsingRecursion() {
+    // Given
     int[] array = {1, 2, 3, 4, 5};
+
+    // When
     int result = arraySum.sumUsingRecursion(array);
+
+    // Then
     assertEquals(15, result);
   }
 
@@ -80,8 +115,13 @@ class ArraySumTest {
   @DisplayName("sumUsingRecursion: 빈 배열 테스트")
   @Test
   public void testSumUsingRecursion_EmptyArray() {
+    // Given
     int[] array = {};
+
+    // When
     int result = arraySum.sumUsingRecursion(array);
+
+    // Then
     assertEquals(0, result);
   }
 
@@ -89,8 +129,13 @@ class ArraySumTest {
   @DisplayName("sumUsingParallelPrefix: 배열 요소들의 합")
   @Test
   public void testSumUsingParallelPrefix() {
+    // Given
     int[] array = {1, 2, 3, 4, 5};
+
+    // When
     int result = arraySum.sumUsingParallelPrefix(array);
+
+    // Then
     assertEquals(15, result);
   }
 
@@ -98,8 +143,13 @@ class ArraySumTest {
   @DisplayName("sumUsingParallelPrefix: 빈 배열 테스트")
   @Test
   public void testSumUsingParallelPrefix_EmptyArray() {
+    // Given
     int[] array = {};
+
+    // When
     int result = arraySum.sumUsingParallelPrefix(array);
+
+    // Then
     assertEquals(0, result);
   }
 }
