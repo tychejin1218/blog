@@ -1,4 +1,4 @@
-package util;
+package util.array;
 
 import java.util.stream.IntStream;
 
