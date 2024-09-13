@@ -109,29 +109,24 @@ public class ArraySum {
 다음은 재귀 호출을 사용한 방법입니다:
 
 ```java
-package util;
-
-public class ArraySum {
-
-    /**
-     * 배열의 합을 재귀 호출을 사용
-     *
-     * @param array 합을 구할 배열
-     * @return 배열 요소들의 합
-     */
-    public int sumUsingRecursion(int[] array) {
-        if (array.length == 0) {
-            return 0;
-        }
-        return sumArrayRecursive(array, array.length - 1);
+/**
+ * 배열의 합을 재귀 호출을 사용
+ *
+ * @param array 합을 구할 배열
+ * @return 배열 요소들의 합
+ */
+public int sumUsingRecursion(int[] array) {
+    if (array.length == 0) {
+        return 0;
     }
+    return sumArrayRecursive(array, array.length - 1);
+}
 
-    private int sumArrayRecursive(int[] array, int index) {
-        if (index == 0) {
-            return array[index];
-        }
-        return array[index] + sumArrayRecursive(array, index - 1);
+private int sumArrayRecursive(int[] array, int index) {
+    if (index == 0) {
+        return array[index];
     }
+    return array[index] + sumArrayRecursive(array, index - 1);
 }
 ```
 
@@ -148,26 +143,21 @@ Java 8부터 도입된 `Arrays.parallelPrefix` 메서드를 사용하면 병렬�
 다음은 `Arrays.parallelPrefix`를 사용한 방법입니다:
 
 ```java
-package util;
-
 import java.util.Arrays;
 
-public class ArraySum {
-
-    /**
-     * 배열의 합을 Arrays.parallelPrefix 메서드를 사용
-     *
-     * @param array 합을 구할 배열
-     * @return 배열 요소들의 합
-     */
-    public int sumUsingParallelPrefix(int[] array) {
-        if (array.length == 0) {
-            return 0;
-        }
-        int[] copy = Arrays.copyOf(array, array.length);
-        Arrays.parallelPrefix(copy, Integer::sum);
-        return copy[copy.length - 1];
+/**
+ * 배열의 합을 Arrays.parallelPrefix 메서드를 사용
+ *
+ * @param array 합을 구할 배열
+ * @return 배열 요소들의 합
+ */
+public int sumUsingParallelPrefix(int[] array) {
+    if (array.length == 0) {
+        return 0;
     }
+    int[] copy = Arrays.copyOf(array, array.length);
+    Arrays.parallelPrefix(copy, Integer::sum);
+    return copy[copy.length - 1];
 }
 ```
 

@@ -12,26 +12,29 @@
 import java.util.HashSet;
 import java.util.Set;
 
-public class ArrayRemoveDuplicates {
-
-  public static int[] removeDuplicatesUsingSet(int[] array) {
-    if (array == null) {
-      return null;
-    }
-
-    Set<Integer> set = new HashSet<>();
-    for (int value : array) {
-      set.add(value);
-    }
-
-    int[] result = new int[set.size()];
-    int i = 0;
-    for (int value : set) {
-      result[i++] = value;
-    }
-
-    return result;
+/**
+ * HashSet을 사용하여 배열에서 중복 요소를 제거
+ *
+ * @param array 입력 배열
+ * @return 중복 요소가 제거된 배열
+ */
+public int[] removeDuplicatesUsingSet(int[] array) {
+  if (array == null) {
+    return null;
   }
+
+  Set<Integer> set = new HashSet<>();
+  for (int value : array) {
+    set.add(value);
+  }
+
+  int[] result = new int[set.size()];
+  int i = 0;
+  for (int value : set) {
+    result[i++] = value;
+  }
+
+  return result;
 }
 ```
 
@@ -51,17 +54,20 @@ Java 8은 `Stream API`를 도입하여 컬렉션과 배열을 처리하는 현�
 ```java
 import java.util.Arrays;
 
-public class ArrayRemoveDuplicates {
-
-  public static int[] removeDuplicatesUsingStream(int[] array) {
-    if (array == null) {
-      return null;
-    }
-
-    return Arrays.stream(array)
-        .distinct()
-        .toArray();
+/**
+ * Stream API를 사용하여 배열에서 중복 요소를 제거
+ *
+ * @param array 입력 배열
+ * @return 중복 요소가 제거된 배열
+ */
+public int[] removeDuplicatesUsingStream(int[] array) {
+  if (array == null) {
+    return null;
   }
+
+  return Arrays.stream(array)
+      .distinct()
+      .toArray();
 }
 ```
 
@@ -79,35 +85,39 @@ public class ArrayRemoveDuplicates {
 다음은 중첩 루프를 사용한 방법입니다:
 
 ```java
-public class ArrayRemoveDuplicates {
 
-  public static int[] removeDuplicatesUsingLoops(int[] array) {
-    if (array == null) {
-      return null;
-    }
-
-    int n = array.length;
-    int[] temp = new int[n];
-    int j = 0;
-
-    for (int i = 0; i < n; i++) {
-      boolean isDuplicate = false;
-      for (int k = 0; k < j; k++) {
-        if (array[i] == temp[k]) {
-          isDuplicate = true;
-          break;
-        }
-      }
-      if (!isDuplicate) {
-        temp[j++] = array[i];
-      }
-    }
-
-    int[] result = new int[j];
-    System.arraycopy(temp, 0, result, 0, j);
-
-    return result;
+/**
+ * 중첩 루프를 사용하여 배열에서 중복 요소를 제거
+ *
+ * @param array 입력 배열
+ * @return 중복 요소가 제거된 배열
+ */
+public int[] removeDuplicatesUsingLoops(int[] array) {
+  if (array == null) {
+    return null;
   }
+
+  int n = array.length;
+  int[] temp = new int[n];
+  int j = 0;
+
+  for (int i = 0; i < n; i++) {
+    boolean isDuplicate = false;
+    for (int k = 0; k < j; k++) {
+      if (array[i] == temp[k]) {
+        isDuplicate = true;
+        break;
+      }
+    }
+    if (!isDuplicate) {
+      temp[j++] = array[i];
+    }
+  }
+
+  int[] result = new int[j];
+  System.arraycopy(temp, 0, result, 0, j);
+
+  return result;
 }
 ```
 
