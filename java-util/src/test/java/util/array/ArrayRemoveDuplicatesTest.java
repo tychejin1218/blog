@@ -106,6 +106,7 @@ class ArrayRemoveDuplicatesTest {
     assertArrayEquals(new int[0], result);
   }
 
+  @Order(7)
   @DisplayName("removeDuplicatesUsingLoops: 일반 배열에서 중복 제거")
   @Test
   public void testRemoveDuplicatesUsingLoops() {
@@ -121,6 +122,7 @@ class ArrayRemoveDuplicatesTest {
     assertArrayEquals(expected, result);
   }
 
+  @Order(8)
   @DisplayName("removeDuplicatesUsingLoops: null 배열 처리")
   @Test
   public void testRemoveDuplicatesUsingLoops_NullArray() {
@@ -135,7 +137,7 @@ class ArrayRemoveDuplicatesTest {
     assertNull(result);
   }
 
-  @Order(6)
+  @Order(9)
   @DisplayName("removeDuplicatesUsingLoops: 빈 배열 처리")
   @Test
   public void testRemoveDuplicatesUsingLoops_EmptyArray() {

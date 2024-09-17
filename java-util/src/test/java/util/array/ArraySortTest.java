@@ -14,7 +14,7 @@ public class ArraySortTest {
   private final ArraySort arraySort = new ArraySort();
 
   @Order(1)
-  @DisplayName("정수 배열을 오름차순으로 정렬")
+  @DisplayName("arraySortAscending: 정수 배열을 오름차순으로 정렬")
   @Test
   void testArraySortAscendingForIntArray() {
 
@@ -30,7 +30,7 @@ public class ArraySortTest {
   }
 
   @Order(2)
-  @DisplayName("정수 배열을 내림차순으로 정렬")
+  @DisplayName("arraySortDescending: 정수 배열을 내림차순으로 정렬")
   @Test
   void testArraySortDescendingForIntArray() {
 
@@ -46,7 +46,7 @@ public class ArraySortTest {
   }
 
   @Order(3)
-  @DisplayName("정수 배열을 병렬로 오름차순 정렬")
+  @DisplayName("parallelSortAscending: 정수 배열을 병렬로 오름차순 정렬")
   @Test
   void testParallelSortAscendingForIntArray() {
 
@@ -62,7 +62,7 @@ public class ArraySortTest {
   }
 
   @Order(4)
-  @DisplayName("정수 배열을 병렬로 내림차순 정렬")
+  @DisplayName("parallelSortDescending: 정수 배열을 병렬로 내림차순 정렬")
   @Test
   void testParallelSortDescendingForIntArray() {
 
@@ -78,7 +78,7 @@ public class ArraySortTest {
   }
 
   @Order(5)
-  @DisplayName("문자열 배열을 오름차순으로 정렬")
+  @DisplayName("arraySortAscending: 문자열 배열을 오름차순으로 정렬")
   @Test
   void testArraySortAscendingForStringArray() {
 
@@ -94,7 +94,7 @@ public class ArraySortTest {
   }
 
   @Order(6)
-  @DisplayName("문자열 배열을 내림차순으로 정렬")
+  @DisplayName("arraySortDescending: 문자열 배열을 내림차순으로 정렬")
   @Test
   void testArraySortDescendingForStringArray() {
 
@@ -110,7 +110,7 @@ public class ArraySortTest {
   }
 
   @Order(7)
-  @DisplayName("문자열 배열을 병렬로 오름차순 정렬")
+  @DisplayName("parallelSortAscending: 문자열 배열을 병렬로 오름차순 정렬")
   @Test
   void testParallelSortAscendingForStringArray() {
 
@@ -126,7 +126,7 @@ public class ArraySortTest {
   }
 
   @Order(8)
-  @DisplayName("문자열 배열을 병렬로 내림차순으로 정렬")
+  @DisplayName("parallelSortDescending: 문자열 배열을 병렬로 내림차순으로 정렬")
   @Test
   void testParallelSortDescendingForStringArray() {
 

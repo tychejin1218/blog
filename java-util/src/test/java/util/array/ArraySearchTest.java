@@ -16,7 +16,7 @@ class ArraySearchTest {
   private ArraySearch arraySearch = new ArraySearch();
 
   @Order(1)
-  @DisplayName("선형 검색")
+  @DisplayName("linearSearch: 선형 검색")
   @Test
   void testLinearSearch() {
 
@@ -34,7 +34,7 @@ class ArraySearchTest {
 
   @Test
   @Order(2)
-  @DisplayName("이진 검색")
+  @DisplayName("binarySearch: 이진 검색")
   void testBinarySearch() {
 
     // given
@@ -52,7 +52,7 @@ class ArraySearchTest {
   }
 
   @Order(3)
-  @DisplayName("Arrays.binarySearch 메서드를 사용한 이진 검색")
+  @DisplayName("binarySearchUsingLibrary: sArrays.binarySearch 메서드를 사용한 이진 검색")
   @Test
   void testBinarySearchUsingLibrary() {
 
@@ -71,7 +71,7 @@ class ArraySearchTest {
   }
 
   @Order(4)
-  @DisplayName("2차원 배열 내 값의 존재 여부 확인")
+  @DisplayName("containsIn2DArray: 2차원 배열 내 값의 존재 여부 확인")
   @Test
   void testContainsIn2DArray() {
 
@@ -91,7 +91,7 @@ class ArraySearchTest {
   }
 
   @Order(5)
-  @DisplayName("for 루프를 사용하여 배열 최대값 찾기")
+  @DisplayName("findMaxUsingForLoop: for 루프를 사용하여 배열 최대값 찾기")
   @Test
   void testFindMaxUsingForLoop() {
 
@@ -107,7 +107,7 @@ class ArraySearchTest {
   }
 
   @Order(6)
-  @DisplayName("스트림을 사용하여 배열 최대값 찾기")
+  @DisplayName("findMax: 스트림을 사용하여 배열 최대값 찾기")
   @Test
   void testFindMax() {
 
@@ -123,7 +123,7 @@ class ArraySearchTest {
   }
 
   @Order(7)
-  @DisplayName("for 루프를 사용하여 배열 최소값 찾기")
+  @DisplayName("findMinUsingForLoop: for 루프를 사용하여 배열 최소값 찾기")
   @Test
   void testFindMinUsingForLoop() {
 
@@ -139,7 +139,7 @@ class ArraySearchTest {
   }
 
   @Order(8)
-  @DisplayName("스트림을 사용하여 배열 최소값 찾기")
+  @DisplayName("findMin: 스트림을 사용하여 배열 최소값 찾기")
   @Test
   void testFindMin() {
 

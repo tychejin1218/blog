@@ -10,7 +10,7 @@ import java.util.Set;
 public class ArrayRemoveDuplicates {
 
   /**
-   * 1. HashSet을 사용한 중복 제거
+   * HashSet을 사용한 중복 제거
    *
    * @param array 중복된 요소를 제거할 정수형 배열
    * @return 중복이 제거된 새로운 배열, 입력 배열이 null인 경우 null 반환
@@ -36,7 +36,7 @@ public class ArrayRemoveDuplicates {
   }
 
   /**
-   * 2. Stream API를 사용한 중복 제거.
+   * Stream API를 사용한 중복 제거.
    *
    * @param array 중복된 요소를 제거할 정수형 배열
    * @return 중복이 제거된 새로운 배열, 입력 배열이 null인 경우 null 반환
