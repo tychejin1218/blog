@@ -44,15 +44,16 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface OrderMapper {
+  
     OrderMapper MAPPER = Mappers.getMapper(OrderMapper.class);
-
+    
     @Mapping(source = "customer.name", target = "customerName")
     @Mapping(source = "shippingAddress.street", target = "shippingStreetAddress")
     @Mapping(source = "shippingAddress.city", target = "shippingCity")
     @Mapping(source = "billingAddress.street", target = "billingStreetAddress")
     @Mapping(source = "billingAddress.city", target = "billingCity")
     OrderDto orderToOrderDto(Order order);
-
+    
     @Mapping(source = "customerName", target = "customer.name")
     @Mapping(source = "shippingStreetAddress", target = "shippingAddress.street")
     @Mapping(source = "shippingCity", target = "shippingAddress.city")
@@ -62,11 +63,72 @@ public interface OrderMapper {
 }
 ```
 
-## 3. Flattening 예제
+## 3. 자동 생성된 클래스
+
+MapStruct는 컴파일 단계에서 매핑 코드를 생성하므로, 개발자가 직접 매핑 로직을 작성할 필요가 없습니다. 이렇게 자동으로 생성되는 클래스는 `Mappers.getMapper(Class<T> clazz)` 메서드를 통해 접근할 수 있습니다. 예를 들어, `OrderMapper` 인터페이스에 정의된 `orderToOrderDto`와 `orderDtoToOrder` 메서드는 컴파일 시 MapStruct에 의해 구현체가 생성됩니다.
+
+생성된 클래스는 **target/generated-sources/annotations**와 같은 디렉토리에 위치합니다. 자동으로 생성된 클래스의 이름은 보통 인터페이스 이름 뒤에 `Impl`이 붙습니다. 예를 들어, `OrderMapper`의 구현체는 `OrderMapperImpl.java`가 됩니다.
+
+### 자동 생성된 코드 예제 (OrderMapperImpl.java):
+
+```java
+package mapstruct.mapper;
+
+import javax.annotation.processing.Generated;
+import mapstruct.dto.OrderDto;
+import mapstruct.entity.Address;
+import mapstruct.entity.Customer;
+import mapstruct.entity.Order;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2024-09-18T16:03:32+0900",
+    comments = "version: 1.6.2, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.8.jar, environment: Java 17.0.2 (Oracle Corporation)"
+)
+public class OrderMapperImpl implements OrderMapper {
+
+  @Override
+  public OrderDto orderToOrderDto(Order order) {
+    if ( order == null ) {
+      return null;
+    }
+
+    OrderDto.OrderDtoBuilder orderDto = OrderDto.builder();
+
+    orderDto.customerName( orderCustomerName( order ) );
+    orderDto.shippingStreetAddress( orderShippingAddressStreet( order ) );
+    orderDto.shippingCity( orderShippingAddressCity( order ) );
+    orderDto.billingStreetAddress( orderBillingAddressStreet( order ) );
+    orderDto.billingCity( orderBillingAddressCity( order ) );
+
+    return orderDto.build();
+  }
+
+  @Override
+  public Order orderDtoToOrder(OrderDto orderDto) {
+    if ( orderDto == null ) {
+      return null;
+    }
+
+    Order.OrderBuilder order = Order.builder();
+
+    order.customer( orderDtoToCustomer( orderDto ) );
+    order.shippingAddress( orderDtoToAddress( orderDto ) );
+    order.billingAddress( orderDtoToAddress1( orderDto ) );
+
+    return order.build();
+  }
+
+  // 중략
+}
+
+```
+
+## 4. Flattening 예제
 
 Flattening은 복잡한 객체 구조를 보다 단순한 구조로 변환하는 것을 의미합니다. 예제 코드를 통해 이를 살펴보겠습니다.
 
-### 3.1 클래스 정의
+### 4.1 클래스 정의
 
 #### OrderDto.java
 
@@ -159,7 +221,7 @@ public class Address {
 }
 ```
 
-### 3.2 Flattening 예제
+### 4.2 Flattening 예제
 
 복잡한 객체 `Order`를 단순한 객체 `OrderDto`로 변환하는 예제입니다.
 
@@ -201,7 +263,7 @@ void testOrderToOrderDto() {
 }
 ```
 
-## 4. Projection 예제
+## 5. Projection 예제
 
 Projection은 여러 소스 객체의 필드를 결합하여 새로운 객체를 생성하는 것을 의미합니다. 예제 코드를 통해 이를 살펴보겠습니다.
 
