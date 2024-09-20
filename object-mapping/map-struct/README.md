@@ -44,22 +44,22 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface OrderMapper {
-  
-    OrderMapper MAPPER = Mappers.getMapper(OrderMapper.class);
-    
-    @Mapping(source = "customer.name", target = "customerName")
-    @Mapping(source = "shippingAddress.street", target = "shippingStreetAddress")
-    @Mapping(source = "shippingAddress.city", target = "shippingCity")
-    @Mapping(source = "billingAddress.street", target = "billingStreetAddress")
-    @Mapping(source = "billingAddress.city", target = "billingCity")
-    OrderDto orderToOrderDto(Order order);
-    
-    @Mapping(source = "customerName", target = "customer.name")
-    @Mapping(source = "shippingStreetAddress", target = "shippingAddress.street")
-    @Mapping(source = "shippingCity", target = "shippingAddress.city")
-    @Mapping(source = "billingStreetAddress", target = "billingAddress.street")
-    @Mapping(source = "billingCity", target = "billingAddress.city")
-    Order orderDtoToOrder(OrderDto orderDto);
+
+  OrderMapper MAPPER = Mappers.getMapper(OrderMapper.class);
+
+  @Mapping(source = "customer.name", target = "customerName")
+  @Mapping(source = "shippingAddress.street", target = "shippingStreetAddress")
+  @Mapping(source = "shippingAddress.city", target = "shippingCity")
+  @Mapping(source = "billingAddress.street", target = "billingStreetAddress")
+  @Mapping(source = "billingAddress.city", target = "billingCity")
+  OrderDto orderToOrderDto(Order order);
+
+  @Mapping(source = "customerName", target = "customer.name")
+  @Mapping(source = "shippingStreetAddress", target = "shippingAddress.street")
+  @Mapping(source = "shippingCity", target = "shippingAddress.city")
+  @Mapping(source = "billingStreetAddress", target = "billingAddress.street")
+  @Mapping(source = "billingCity", target = "billingAddress.city")
+  Order orderDtoToOrder(OrderDto orderDto);
 }
 ```
 
@@ -121,14 +121,9 @@ public class OrderMapperImpl implements OrderMapper {
 
   // 중략
 }
-
 ```
 
-## 4. Flattening 예제
-
-Flattening은 복잡한 객체 구조를 보다 단순한 구조로 변환하는 것을 의미합니다. 예제 코드를 통해 이를 살펴보겠습니다.
-
-### 4.1 클래스 정의
+## 4. 클래스 정의
 
 #### OrderDto.java
 
@@ -221,7 +216,11 @@ public class Address {
 }
 ```
 
-### 4.2 Flattening 예제
+### 5. Flattening 예제 및 Projection 예제
+
+복잡한 객체 구조를 보다 단순한 구조로 변환하거나 여러 소스 객체의 필드를 결합하여 새로운 객체로 변환하는 예제 및 단위 테스트입니다.
+
+#### Flattening 예제
 
 복잡한 객체 `Order`를 단순한 객체 `OrderDto`로 변환하는 예제입니다.
 
@@ -263,9 +262,9 @@ void testOrderToOrderDto() {
 }
 ```
 
-## 5. Projection 예제
+#### Projection 예제
 
-Projection은 여러 소스 객체의 필드를 결합하여 새로운 객체를 생성하는 것을 의미합니다. 예제 코드를 통해 이를 살펴보겠습니다.
+`OrderDto` 객체의 필드를 사용하여 `Order` 객체를 생성하는 예제입니다.
 
 ```java
 @DisplayName("OrderDto를 Order로 매핑")
