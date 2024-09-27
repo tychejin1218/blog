@@ -115,17 +115,13 @@ public <T extends Comparable<? super T>> List<T> parallelStreamSortDescending(Li
 ```
 
 ## 장단점
-
 ### 장점
-
 - **간단함:** `Collections.sort`, `Stream.sort`, `Parallel Stream.sort` 메서드는 매우 직관적이고 이해하기 쉽습니다.
 - **성능:** `Parallel Stream`은 병렬 처리를 통해 대용량 데이터에서 성능을 향상시킬 수 있습니다.
 
 ### 단점
-
 - **복잡성:** 병렬 정렬(특히 내림차순 정렬)은 코드가 더 복잡해질 수 있습니다.
 - **오버헤드:** 병렬 처리는 특정 상황에서 성능 오버헤드를 초래할 수 있습니다.
 
 ## 결론
-
 자바에서 리스트를 정렬하는 방법을 `Collections.sort`, `Stream`, `Parallel Stream` 메서드를 통해 용이하게 구현할 수 있습니다. 각각의 방법은 정렬할 데이터의 양과 정렬 속도 요구 사항에 따라 적절히 선택할 수 있습니다.
