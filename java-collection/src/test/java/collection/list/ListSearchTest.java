@@ -18,7 +18,7 @@ class ListSearchTest {
   private ListSearch listSearch = new ListSearch();
 
   @Order(1)
-  @DisplayName("linearSearch: 선형 검색")
+  @DisplayName("linearSearch: 순차 검색")
   @Test
   void testLinearSearch() {
 
@@ -34,8 +34,8 @@ class ListSearchTest {
     assertEquals(expectedIndex, actualIndex);
   }
 
-  @Test
   @Order(2)
+  @Test
   @DisplayName("binarySearch: 이진 검색")
   void testBinarySearch() {
 
@@ -154,7 +154,7 @@ class ListSearchTest {
   }
 
   @Order(9)
-  @DisplayName("findMostFrequent: 가장 빈번하게 나타나는 값 찾기")
+  @DisplayName("findMostFrequent: 최빈값(가장 빈번하게 나타나는 값) 찾기")
   @Test
   void testFindMostFrequent() {
 
