@@ -2,7 +2,7 @@
 
 자바에서는 리스트를 정렬하는 다양한 방법이 있습니다. 이번 문서에서는 `ListSort` 클래스의 메서드를 사용하여 리스트를 오름차순 및 내림차순으로 정렬하는 방법을 기본과 병렬 방식으로 구분하여 설명하겠습니다.
 
-## 1. 정수 리스트를 `Collections.sort` 메서드를 사용하여 오름차순 정렬
+## 1. 리스트를 `Collections.sort` 메서드를 사용하여 오름차순 정렬
 
 `Collections.sort` 메서드를 사용하여 정수 리스트를 오름차순으로 정렬합니다.
 
@@ -20,7 +20,7 @@ public <T extends Comparable<? super T>> List<T> listSortAscending(List<T> list)
 }
 ```
 
-## 2. 정수 리스트를 `Collections.sort` 메서드를 사용하여 내림차순 정렬
+## 2. 리스트를 `Collections.sort` 메서드를 사용하여 내림차순 정렬
 
 `Collections.sort`와 `Comparator.reverseOrder`를 사용하여 정수 리스트를 내림차순으로 정렬합니다.
 
@@ -38,7 +38,7 @@ public <T extends Comparable<? super T>> List<T> listSortDescending(List<T> list
 }
 ```
 
-## 3. 정수 리스트를 `Stream`을 사용하여 오름차순 정렬
+## 3. 리스트를 `Stream`을 사용하여 오름차순 정렬
 
 `Stream`을 사용하여 정수 리스트를 오름차순으로 정렬합니다.
 
@@ -57,7 +57,7 @@ public <T extends Comparable<? super T>> List<T> streamSortAscending(List<T> lis
 }
 ```
 
-## 4. 정수 리스트를 `Stream`을 사용하여 내림차순 정렬
+## 4. 리스트를 `Stream`을 사용하여 내림차순 정렬
 
 `Stream`과 `Comparator.reverseOrder`를 사용하여 정수 리스트를 내림차순으로 정렬합니다.
 
@@ -76,7 +76,7 @@ public <T extends Comparable<? super T>> List<T> streamSortDescending(List<T> li
 }
 ```
 
-## 5. 정수 리스트를 `Parallel Stream`을 사용하여 병렬로 오름차순 정렬
+## 5. 리스트를 `Parallel Stream`을 사용하여 병렬로 오름차순 정렬
 
 `Parallel Stream`을 사용하여 정수 리스트를 병렬로 오름차순 정렬합니다.
 
@@ -95,7 +95,7 @@ public <T extends Comparable<? super T>> List<T> parallelStreamSortAscending(Lis
 }
 ```
 
-## 6. 정수 리스트를 `Parallel Stream`을 사용하여 병렬로 내림차순 정렬
+## 6. 리스트를 `Parallel Stream`을 사용하여 병렬로 내림차순 정렬
 
 `Parallel Stream`과 `Comparator.reverseOrder`를 사용하여 정수 리스트를 병렬로 내림차순 정렬합니다.
 
@@ -111,42 +111,6 @@ public <T extends Comparable<? super T>> List<T> parallelStreamSortDescending(Li
     return list.parallelStream()
         .sorted(Comparator.reverseOrder())
         .collect(Collectors.toList());
-}
-```
-
-## 7. 문자열 리스트를 오름차순 정렬
-
-`Collections.sort` 메서드를 사용하여 문자열 리스트를 오름차순으로 정렬합니다.
-
-```java
-/**
- * Collections.sort 메소드를 사용하여 문자열 리스트를 오름차순으로 정렬
- *
- * @param list 정렬할 리스트
- * @param <T> 정렬할 리스트의 타입
- * @return 정렬된 리스트
- */
-public <T extends Comparable<? super T>> List<T> listSortAscending(List<T> list) {
-    Collections.sort(list);
-    return list;
-}
-```
-
-## 8. 문자열 리스트를 내림차순 정렬
-
-`Collections.sort`와 `Comparator.reverseOrder`를 사용하여 문자열 리스트를 내림차순으로 정렬합니다.
-
-```java
-/**
- * Collections.sort 메소드를 사용하여 문자열 리스트를 내림차순으로 정렬
- *
- * @param list 정렬할 리스트
- * @param <T> 정렬할 리스트의 타입
- * @return 정렬된 리스트
- */
-public <T extends Comparable<? super T>> List<T> listSortDescending(List<T> list) {
-    list.sort(Comparator.reverseOrder());
-    return list;
 }
 ```
 
