@@ -5,7 +5,7 @@ import java.util.List;
 public class ListSum {
 
   /**
-   * 리스트의 합을 전통적인 for 루프를 사용해 계산
+   * 리스트의 합을 전통적인 for 문을 사용
    *
    * @param list 합을 구할 리스트
    * @return 리스트 요소들의 합
@@ -19,7 +19,7 @@ public class ListSum {
   }
 
   /**
-   * 리스트의 합을 향상된 for 루프를 사용해 계산
+   * 리스트의 합을 향상된 for 문을 사용
    *
    * @param list 합을 구할 리스트
    * @return 리스트 요소들의 합
@@ -33,7 +33,7 @@ public class ListSum {
   }
 
   /**
-   * 리스트의 합을 Stream API를 사용해 계산
+   * 리스트의 합을 Stream API를 사용
    *
    * @param list 합을 구할 리스트
    * @return 리스트 요소들의 합
@@ -45,7 +45,7 @@ public class ListSum {
   }
 
   /**
-   * 리스트의 합을 Stream의 reduce 메서드를 사용해 계산
+   * 리스트의 합을 Stream의 reduce 메서드를 사용
    *
    * @param list 합을 구할 리스트
    * @return 리스트 요소들의 합
@@ -56,7 +56,7 @@ public class ListSum {
   }
 
   /**
-   * 리스트의 합을 재귀 호출을 사용해 계산
+   * 리스트의 합을 재귀 호출을 사용
    *
    * @param list 합을 구할 리스트
    * @return 리스트 요소들의 합
@@ -83,7 +83,7 @@ public class ListSum {
   }
 
   /**
-   * 리스트의 합을 병렬 연산을 사용 (parallelStream)해 계산
+   * 리스트의 합을 병렬 스트림(parallelStream)을 사용
    *
    * @param list 합을 구할 리스트
    * @return 리스트 요소들의 합
