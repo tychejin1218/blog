@@ -17,6 +17,7 @@ repositories {
 
 ext {
     junitVersion = '5.10.3'
+    lombokVersion = '1.18.34'
 }
 
 tasks.withType(JavaCompile) {
@@ -28,6 +29,12 @@ dependencies {
     // Junit
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
+    // Lombok
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 }
 
 test {
