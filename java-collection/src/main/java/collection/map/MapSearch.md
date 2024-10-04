@@ -42,7 +42,7 @@ public <K, V> boolean containsValue(Map<K, V> map, V value) {
 
 ## 3. 키와 연관된 값 조회
 
-주어진 키와 연관된 값을 조회할 때, `getValueByKey` 메서드를 사용합니다.
+주어진 키와 연관된 값을 조회할 때, `get` 메서드를 사용합니다.
 
 ```java
 /**
@@ -61,7 +61,7 @@ public <K, V> V getValueByKey(Map<K, V> map, K key) {
 
 ## 4. 값과 연관된 키 조회
 
-주어진 값과 연관된 키를 조회할 때, `getKeyByValue` 메서드를 사용합니다.
+주어진 값과 연관된 키를 조회할 때, `getKey`, `getValue` 메서드를 사용합니다.
 
 ```java
 /**
