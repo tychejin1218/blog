@@ -20,71 +20,171 @@ Java 8은 날짜와 시간 API에 큰 변화를 가져왔습니다. Java 8 이�
 ## 현재 날짜와 특정 날짜 비교
 
 ### Java 8 이후
-
-Java 8에서는 `LocalDate` 클래스를 사용하여 쉽게 날짜를 비교할 수 있습니다. 예제를 통해 살펴보겠습니다:
+Java 8에서는 `LocalDate` 클래스를 사용하여 쉽게 날짜를 비교할 수 있습니다.
 
 ```java
-@Order(1)
 @DisplayName("한국 현지 날짜를 가져오고 특정 날짜를 2024-10-04로 설정하여 비교 - Java 8 이후")
 @Test
 void testCompareCurrentAndSpecificDate() {
-  // Given: 현재 날짜와 특정 날짜를 설정합니다.
+  // Given
   LocalDate currentDate = LocalDate.now(KOREA_ZONE_ID);
   LocalDate expectedDate = LocalDate.now(KOREA_ZONE_ID);
   LocalDate specificDate = LocalDate.of(2024, 10, 4);
 
-  // When: 현재 날짜에서 일주일 후와 한 달 전 날짜를 계산합니다.
+  // When
   LocalDate oneWeekLater = currentDate.plusWeeks(1);
   LocalDate oneMonthEarlier = currentDate.minusMonths(1);
 
-  // Then: 각 날짜가 예상한 값과 같은지 확인합니다.
+  // Then
   assertAll(
-      () -> assertEquals(expectedDate, currentDate, "현재 날짜가 다릅니다."),
-      () -> assertEquals(LocalDate.of(2024, 10, 4), specificDate, "특정 날짜가 다릅니다."),
-      () -> assertEquals(currentDate.plusWeeks(1), oneWeekLater, "일주일 후 날짜가 다릅니다."),
-      () -> assertEquals(currentDate.minusMonths(1), oneMonthEarlier, "한 달 전 날짜가 다릅니다.")
+          () -> assertEquals(expectedDate, currentDate, "현재 날짜가 다릅니다."),
+          () -> assertEquals(LocalDate.of(2024, 10, 4), specificDate, "특정 날짜가 다릅니다."),
+          () -> assertEquals(currentDate.plusWeeks(1), oneWeekLater, "일주일 후 날짜가 다릅니다."),
+          () -> assertEquals(currentDate.minusMonths(1), oneMonthEarlier, "한 달 전 날짜가 다릅니다.")
   );
 }
 ```
 
-이 예제에서는 `LocalDate`를 사용하여 현재 날짜와 특정 날짜를 비교하고, 일주일 후와 한 달 전 날짜를 계산하여 확인합니다.
-
 ### Java 8 이전
-
-Java 8 이전에는 `Date`와 `Calendar` 클래스를 사용하여 날짜를 비교했습니다. 다음은 Java 8 이전의 예제입니다:
+Java 8 이전에는 `Date`와 `Calendar` 클래스를 사용하여 날짜를 비교했습니다.
 
 ```java
-@Order(2)
 @DisplayName("한국 현지 날짜를 가져오고 특정 날짜를 2024-10-04로 설정하여 비교 - Java 8 이전")
 @Test
 void testCompareCurrentAndSpecificDatePreJava8() throws ParseException {
-  // Given: 현재 날짜와 특정 날짜를 설정합니다.
+
+  // Given
   Date currentDate = new Date();
-  Date expectedDate = SIMPLE_DATE_FORMAT.parse(SIMPLE_DATE_FORMAT.format(currentDate));
+  Date expectedDate = SIMPLE_DATE_FORMAT.parse(
+          SIMPLE_DATE_FORMAT.format(currentDate));
   Calendar calendar = Calendar.getInstance(KOREA_TIMEZONE);
   calendar.set(2024, Calendar.OCTOBER, 4);
-  Date specificDate = SIMPLE_DATE_FORMAT.parse(SIMPLE_DATE_FORMAT.format(calendar.getTime()));
+  Date specificDate = SIMPLE_DATE_FORMAT.parse(
+          SIMPLE_DATE_FORMAT.format(calendar.getTime()));
 
-  // When: 현재 날짜에서 일주일 후와 한 달 전 날짜를 계산합니다.
+  // When
   calendar.setTime(expectedDate);
   calendar.add(Calendar.WEEK_OF_YEAR, 1);
-  Date oneWeekLater = SIMPLE_DATE_FORMAT.parse(SIMPLE_DATE_FORMAT.format(calendar.getTime()));
+  Date oneWeekLater = SIMPLE_DATE_FORMAT.parse(
+          SIMPLE_DATE_FORMAT.format(calendar.getTime()));
 
   calendar.setTime(expectedDate);
   calendar.add(Calendar.MONTH, -1);
-  Date oneMonthEarlier = SIMPLE_DATE_FORMAT.parse(SIMPLE_DATE_FORMAT.format(calendar.getTime()));
+  Date oneMonthEarlier = SIMPLE_DATE_FORMAT.parse(
+          SIMPLE_DATE_FORMAT.format(calendar.getTime()));
 
-  // Then: 각 날짜가 예상한 값과 같은지 확인합니다.
+  // Then
   assertAll(
-      () -> assertEquals(expectedDate, SIMPLE_DATE_FORMAT.parse(SIMPLE_DATE_FORMAT.format(currentDate)), "현재 날짜가 다릅니다."),
-      () -> assertEquals(SIMPLE_DATE_FORMAT.parse("2024-10-04"), specificDate, "특정 날짜가 다릅니다."),
-      () -> assertEquals(oneWeekLater, SIMPLE_DATE_FORMAT.parse(SIMPLE_DATE_FORMAT.format(oneWeekLater)), "일주일 후 날짜가 다릅니다."),
-      () -> assertEquals(oneMonthEarlier, SIMPLE_DATE_FORMAT.parse(SIMPLE_DATE_FORMAT.format(oneMonthEarlier)), "한 달 전 날짜가 다릅니다.")
+          () -> assertEquals(expectedDate,
+                  SIMPLE_DATE_FORMAT.parse(SIMPLE_DATE_FORMAT.format(currentDate)), "현재 날짜가 다릅니다."),
+          () -> assertEquals(SIMPLE_DATE_FORMAT.parse("2024-10-04"), specificDate, "특정 날짜가 다릅니다."),
+          () -> assertEquals(oneWeekLater,
+                  SIMPLE_DATE_FORMAT.parse(SIMPLE_DATE_FORMAT.format(oneWeekLater)), "일주일 후 날짜가 다릅니다."),
+          () -> assertEquals(oneMonthEarlier,
+                  SIMPLE_DATE_FORMAT.parse(SIMPLE_DATE_FORMAT.format(oneMonthEarlier)), "한 달 전 날짜가 다릅니다.")
   );
 }
 ```
 
-이 예제에서는 `Date`와 `Calendar`를 사용하여 날짜를 비교하고, 일주일 후와 한 달 전 날짜를 계산하여 확인합니다. 이 방법은 복잡하고 가독성이 떨어질 수 있습니다.
+## 현재 시간과 특정 시간 비교
+
+### Java 8 이후
+Java 8에서는 `LocalTime` 클래스를 사용하여 쉽게 시간을 비교할 수 있습니다.
+
+```java
+@DisplayName("한국 현지 시간을 가져오고, 주어진 시간과 같거나 그 이후인지를 검증 - Java 8 이후")
+@Test
+void testCompareCurrentTimeAndGivenTime() {
+
+  // Given
+  LocalTime thirteenOClock = LocalTime.of(9, 0);
+
+  // When
+  LocalTime currentTime = LocalTime.now(KOREA_ZONE_ID);
+
+  // Then
+  assertTrue(currentTime.isAfter(thirteenOClock) || currentTime.equals(thirteenOClock), "현재 시간이 13시보다 이르다.");
+}
+```
+이 예제에서는 LocalTime을 사용하여 현재 시간과 2시간 후, 15분 전 시간을 비교하고 검증합니다.
+
+### Java 8 이전
+Java 8 이전에는 Date와 Calendar 클래스를 사용하여 시간을 비교했습니다.
+```java
+@DisplayName("한국 현지 시간을 가져오고, 주어진 시간과 같거나 그 이후인지를 검증 - Java 8 이전")
+@Test
+void testCompareCurrentTimeAndGivenTimePreJava8() {
+
+  // Given
+  Calendar calendar = Calendar.getInstance(KOREA_TIMEZONE);
+  calendar.set(Calendar.HOUR_OF_DAY, 9);
+  calendar.set(Calendar.MINUTE, 0);
+  calendar.set(Calendar.SECOND, 0);
+  calendar.set(Calendar.MILLISECOND, 0);
+  Date thirteenOClock = calendar.getTime();
+
+  // When
+  calendar.setTime(new Date());
+  Date currentTime = calendar.getTime();
+
+  // Then
+  assertTrue(currentTime.after(thirteenOClock) || currentTime.equals(thirteenOClock), "현재 시간이 13시보다 이르다.");
+}
+```
+
+## 현재 날짜와 시간, 특정 날짜와 시간 비교
+
+### Java 8 이후
+Java 8에서는 LocalDateTime 클래스를 사용하여 쉽게 날짜와 시간을 비교할 수 있습니다.
+```java
+@DisplayName("한국 현지 날짜와 시간을 가져오고 특정 날짜와 시간을 2024-10-04 14:30:45로 설정하여 비교 - Java 8 이후")
+@Test
+void testCompareCurrentAndSpecificDateTime() {
+  // Given
+  LocalDateTime currentDateTime = LocalDateTime.now(KOREA_ZONE_ID);
+
+  // When
+  LocalDateTime tomorrowSameTime = currentDateTime.plusDays(1);
+  LocalDateTime lastMonthSameTime = currentDateTime.minusMonths(1);
+
+  // Then
+  assertAll(
+      () -> assertTrue(currentDateTime.isBefore(tomorrowSameTime), "현재 날짜와 시간이 내일 같은 시간보다 늦습니다."),
+      () -> assertTrue(currentDateTime.isAfter(lastMonthSameTime),
+          "현재 날짜와 시간이 지난 달 같은 시간보다 빠릅니다.")
+  );
+}
+```
+
+### Java 8 이전
+Java 8 이전에는 Date와 Calendar 클래스를 사용하여 날짜와 시간을 비교했습니다.
+```java
+@DisplayName("한국 현지 날짜와 시간을 가져오고 특정 날짜와 시간을 2024-10-04 14:30:45로 설정하여 비교 - Java 8 이전")
+@Test
+void testCompareCurrentAndSpecificDateTimePreJava8() {
+
+  // Given
+  Date currentDateTime = new Date();
+  Calendar calendar = Calendar.getInstance(KOREA_TIMEZONE);
+  calendar.set(2024, Calendar.OCTOBER, 4, 14, 30, 45);
+  Date specificDateTime = calendar.getTime();
+
+  // When
+  calendar.setTime(currentDateTime);
+  calendar.add(Calendar.DAY_OF_MONTH, 1);
+  Date tomorrowSameTime = calendar.getTime();
+
+  calendar.setTime(currentDateTime);
+  calendar.add(Calendar.MONTH, -1);
+  Date lastMonthSameTime = calendar.getTime();
+
+  // Then
+  assertAll(
+      () -> assertTrue(currentDateTime.before(tomorrowSameTime), "현재 날짜와 시간이 내일 같은 시간보다 늦습니다."),
+      () -> assertTrue(currentDateTime.after(lastMonthSameTime), "현재 날짜와 시간이 지난 달 같은 시간보다 빠릅니다.")
+  );
+}
+```
 
 ### 장단점 비교
 

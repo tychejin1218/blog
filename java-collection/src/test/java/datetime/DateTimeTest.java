@@ -101,46 +101,39 @@ public class DateTimeTest {
   }
 
   @Order(3)
-  @DisplayName("한국 현지 시간을 가져오고 특정 시간을 14:30:45으로 설정하여 비교 - Java 8 이후")
+  @DisplayName("한국 현지 시간을 가져오고, 주어진 시간과 같거나 그 이후인지를 검증 - Java 8 이후")
   @Test
-  void testCompareCurrentAndSpecificTime() {
+  void testCompareCurrentTimeAndGivenTime() {
 
     // Given
-    LocalTime currentTime = LocalTime.now(KOREA_ZONE_ID);
+    LocalTime thirteenOClock = LocalTime.of(9, 0);
 
     // When
-    LocalTime twoHoursLater = currentTime.plusHours(2);
-    LocalTime fifteenMinutesEarlier = currentTime.minusMinutes(15);
+    LocalTime currentTime = LocalTime.now(KOREA_ZONE_ID);
 
     // Then
-    assertAll(
-        () -> assertTrue(currentTime.isBefore(twoHoursLater), "현재 시간이 두 시간 후 시간보다 늦습니다."),
-        () -> assertTrue(currentTime.isAfter(fifteenMinutesEarlier), "현재 시간이 15분 전 시간보다 빠릅니다.")
-    );
+    assertTrue(currentTime.isAfter(thirteenOClock) || currentTime.equals(thirteenOClock), "현재 시간이 13시보다 이르다.");
   }
 
   @Order(4)
-  @DisplayName("한국 현지 시간을 가져오고 특정 시간을 14:30:45으로 설정하여 비교 - Java 8 이전")
+  @DisplayName("한국 현지 시간을 가져오고, 주어진 시간과 같거나 그 이후인지를 검증 - Java 8 이전")
   @Test
-  void testCompareCurrentAndSpecificTimePreJava8() {
+  void testCompareCurrentTimeAndGivenTimePreJava8() {
 
     // Given
     Calendar calendar = Calendar.getInstance(KOREA_TIMEZONE);
-    Date currentTime = calendar.getTime();
+    calendar.set(Calendar.HOUR_OF_DAY, 9);
+    calendar.set(Calendar.MINUTE, 0);
+    calendar.set(Calendar.SECOND, 0);
+    calendar.set(Calendar.MILLISECOND, 0);
+    Date thirteenOClock = calendar.getTime();
 
     // When
-    calendar.add(Calendar.HOUR_OF_DAY, 2);
-    Date twoHoursLater = calendar.getTime();
-
-    calendar.setTime(currentTime);
-    calendar.add(Calendar.MINUTE, -15);
-    Date fifteenMinutesEarlier = calendar.getTime();
+    calendar.setTime(new Date());
+    Date currentTime = calendar.getTime();
 
     // Then
-    assertAll(
-        () -> assertTrue(currentTime.before(twoHoursLater), "현재 시간이 두 시간 후 시간보다 늦습니다."),
-        () -> assertTrue(currentTime.after(fifteenMinutesEarlier), "현재 시간이 15분 전 시간보다 빠릅니다.")
-    );
+    assertTrue(currentTime.after(thirteenOClock) || currentTime.equals(thirteenOClock), "현재 시간이 13시보다 이르다.");
   }
 
   @Order(5)
@@ -171,7 +164,6 @@ public class DateTimeTest {
     Date currentDateTime = new Date();
     Calendar calendar = Calendar.getInstance(KOREA_TIMEZONE);
     calendar.set(2024, Calendar.OCTOBER, 4, 14, 30, 45);
-    Date specificDateTime = calendar.getTime();
 
     // When
     calendar.setTime(currentDateTime);
