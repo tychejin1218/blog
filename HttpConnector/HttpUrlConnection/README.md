@@ -48,6 +48,8 @@ public class HttpUtil {
 ## HttpUtil 클래스의 메서드 설명
 
 ### 1. GET 요청
+GET 요청은 주로 서버로부터 데이터를 조회할 때 사용됩니다.
+
 ```java
 public static <T> T sendGet(String targetUrl, Map<String, String> headers, Class<T> responseType)
     throws Exception {
@@ -115,6 +117,8 @@ public void testGetRequest() throws Exception {
 ```
 
 ### 2. POST 요청
+POST 요청은 주로 서버에 데이터를 생성할 때 사용됩니다.
+
 ```java
 public static <T, R> R sendPost(String targetUrl, T postData, Map<String, String> headers,
     Class<R> responseType) throws Exception {
@@ -197,6 +201,8 @@ public void testPostRequest() throws Exception {
 ```
 
 ### 3. PUT 요청
+PUT 요청은 서버의 기존 데이터를 업데이트할 때 사용됩니다.
+
 ```java
 public static <T, R> R sendPut(String targetUrl, T putData, Map<String, String> headers,
     Class<R> responseType) throws Exception {
@@ -279,6 +285,8 @@ public void testPutRequest() throws Exception {
 ```
 
 ### 4. PATCH 요청
+PATCH 요청은 서버의 데이터를 부분적으로 업데이트할 때 사용됩니다.
+
 ```java
 public static <T, R> R sendPatch(String targetUrl, T patchData, Map<String, String> headers,
     Class<R> responseType) throws Exception {
@@ -358,6 +366,8 @@ public void testPatchRequest() throws Exception {
 ```
 
 ### 5. DELETE 요청
+DELETE 요청은 서버의 데이터를 삭제할 때 사용됩니다.
+
 ```java
 public static <T> T sendDelete(String targetUrl, Map<String, String> headers,
     Class<T> responseType) throws Exception {
