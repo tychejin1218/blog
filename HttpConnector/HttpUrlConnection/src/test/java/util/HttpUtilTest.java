@@ -20,7 +20,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 
 @Slf4j
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class HttpUtilsTest {
+class HttpUtilTest {
 
   private static final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -43,7 +43,7 @@ class HttpUtilsTest {
     headers.put("Accept", "application/json");
 
     // When
-    PostDTO response = HttpUtils.sendGet(TEST_GET_URL, headers, PostDTO.class);
+    PostDTO response = HttpUtil.sendGet(TEST_GET_URL, headers, PostDTO.class);
     log.debug("response: {}", objectMapper.writeValueAsString(response));
 
     // Then
@@ -72,7 +72,7 @@ class HttpUtilsTest {
         .build();
 
     // When
-    PostDTO response = HttpUtils.sendPost(TEST_POST_URL, postData, headers, PostDTO.class);
+    PostDTO response = HttpUtil.sendPost(TEST_POST_URL, postData, headers, PostDTO.class);
     log.debug("response: {}", objectMapper.writeValueAsString(response));
 
     // Then
@@ -103,7 +103,7 @@ class HttpUtilsTest {
         .build();
 
     // When
-    PostDTO response = HttpUtils.sendPut(TEST_PUT_URL, putData, headers, PostDTO.class);
+    PostDTO response = HttpUtil.sendPut(TEST_PUT_URL, putData, headers, PostDTO.class);
     log.debug("response: {}", objectMapper.writeValueAsString(response));
 
     // Then
@@ -131,7 +131,7 @@ class HttpUtilsTest {
         .build();
 
     // When
-    PostDTO response = HttpUtils.sendPatch(TEST_PATCH_URL, patchData, headers, PostDTO.class);
+    PostDTO response = HttpUtil.sendPatch(TEST_PATCH_URL, patchData, headers, PostDTO.class);
     log.debug("response: {}", objectMapper.writeValueAsString(response));
 
     // Then
@@ -154,7 +154,7 @@ class HttpUtilsTest {
     headers.put("Accept", "application/json");
 
     // When
-    PostDTO response = HttpUtils.sendDelete(TEST_DELETE_URL, headers, PostDTO.class);
+    PostDTO response = HttpUtil.sendDelete(TEST_DELETE_URL, headers, PostDTO.class);
     log.debug("response: {}", objectMapper.writeValueAsString(response));
 
     // Then

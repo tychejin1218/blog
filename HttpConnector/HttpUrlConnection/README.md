@@ -16,8 +16,8 @@
 - `disconnect()`: 연결을 종료합니다.
 
 
-## HttpUtils 클래스
-HttpUtils 클래스는 다양한 HTTP 메서드(GET, POST, PUT, PATCH, DELETE)를 사용하여 HTTP 요청을 보내고 DTO 객체로 응답을 받는 기능을 제공합니다.
+## HttpUtil 클래스
+HttpUtil 클래스는 다양한 HTTP 메서드(GET, POST, PUT, PATCH, DELETE)를 사용하여 HTTP 요청을 보내고 DTO 객체로 응답을 받는 기능을 제공합니다.
 
 ```java
 package util;
@@ -35,7 +35,7 @@ import lombok.extern.slf4j.Slf4j;
  * HTTP 요청(GET, POST, PUT, PATCH, DELETE)을 위한 유틸리티 클래스
  */
 @Slf4j
-public class HttpUtils {
+public class HttpUtil {
 
   private static final ObjectMapper objectMapper = new ObjectMapper();
   private static final int CONNECT_TIMEOUT = 5000; // 5초 연결 타임아웃
@@ -45,7 +45,7 @@ public class HttpUtils {
 }
 ```
 
-## HttpUtils 클래스의 메서드 설명
+## HttpUtil 클래스의 메서드 설명
 
 ### 1. GET 요청
 ```java
@@ -103,7 +103,7 @@ public void testGetRequest() throws Exception {
   headers.put("Accept", "application/json");
 
   // When
-  PostDTO response = HttpUtils.sendGet(TEST_GET_URL, headers, PostDTO.class);
+  PostDTO response = HttpUtil.sendGet(TEST_GET_URL, headers, PostDTO.class);
   log.debug("response: {}", objectMapper.writeValueAsString(response));
 
   // Then
@@ -184,7 +184,7 @@ public void testPostRequest() throws Exception {
       .build();
 
   // When
-  PostDTO response = HttpUtils.sendPost(TEST_POST_URL, postData, headers, PostDTO.class);
+  PostDTO response = HttpUtil.sendPost(TEST_POST_URL, postData, headers, PostDTO.class);
   log.debug("response: {}", objectMapper.writeValueAsString(response));
 
   // Then
@@ -266,7 +266,7 @@ public void testPutRequest() throws Exception {
       .build();
 
   // When
-  PostDTO response = HttpUtils.sendPut(TEST_PUT_URL, putData, headers, PostDTO.class);
+  PostDTO response = HttpUtil.sendPut(TEST_PUT_URL, putData, headers, PostDTO.class);
   log.debug("response: {}", objectMapper.writeValueAsString(response));
 
   // Then
@@ -346,7 +346,7 @@ public void testPatchRequest() throws Exception {
       .build();
 
   // When
-  PostDTO response = HttpUtils.sendPatch(TEST_PATCH_URL, patchData, headers, PostDTO.class);
+  PostDTO response = HttpUtil.sendPatch(TEST_PATCH_URL, patchData, headers, PostDTO.class);
   log.debug("response: {}", objectMapper.writeValueAsString(response));
 
   // Then
@@ -414,7 +414,7 @@ public void testDeleteRequest() throws Exception {
   headers.put("Accept", "application/json");
 
   // When
-  PostDTO response = HttpUtils.sendDelete(TEST_DELETE_URL, headers, PostDTO.class);
+  PostDTO response = HttpUtil.sendDelete(TEST_DELETE_URL, headers, PostDTO.class);
   log.debug("response: {}", objectMapper.writeValueAsString(response));
 
   // Then

@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
  * HTTP 요청(GET, POST, PUT, PATCH, DELETE)을 위한 유틸리티 클래스
  */
 @Slf4j
-public class HttpUtils {
+public class HttpUtil {
 
   private static final ObjectMapper objectMapper = new ObjectMapper();
   private static final int CONNECT_TIMEOUT = 5000; // 5초 연결 타임아웃
