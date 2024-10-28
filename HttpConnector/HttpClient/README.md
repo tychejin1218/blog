@@ -23,8 +23,8 @@
     - `statusCode()`: 응답 상태 코드를 반환합니다.
     - `headers()`: 응답 헤더를 반환합니다.
 
-## HttpUtil 클래스
-HttpUtil 클래스는 다양한 HTTP 메서드(GET, POST, PUT, PATCH, DELETE)를 사용하여 HTTP 요청을 보내고 DTO 객체로 응답을 받는 기능을 제공합니다.
+## HttpUtil 클래스 설명
+HttpUtil 클래스는 다양한 HTTP 메서드(GET, POST, PUT, PATCH, DELETE)를 사용하여 HTTP 요청을 보내고, 서버로부터 응답을 받아 이를 DTO 객체로 반환하는 유틸리티 클래스입니다.
 
 ```java
 package util;
