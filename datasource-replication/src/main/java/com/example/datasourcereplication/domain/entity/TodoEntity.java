@@ -1,5 +1,6 @@
 package com.example.datasourcereplication.domain.entity;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,29 +12,27 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@Entity
 @Table(name = "todo")
-public class Todo {
+@Entity
+public class TodoEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name="id", nullable = false)
   private Long id;
 
-  @Column(name="title")
+  @Column(name = "title")
   private String title;
 
-  @Column(name="description")
+  @Column(name = "description")
   private String description;
 
-  @Column(name="completed")
+  @Column(name = "completed")
   private Boolean completed;
 }
+

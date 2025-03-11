@@ -1,11 +1,12 @@
 package com.example.datasourcereplication.service;
 
-import com.example.datasourcereplication.domain.entity.Todo;
+import com.example.datasourcereplication.domain.entity.TodoEntity;
 import com.example.datasourcereplication.domain.repository.TodoRepository;
-import com.example.datasourcereplication.dto.TodoRequestDto;
+import com.example.datasourcereplication.dto.TodoDto;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,90 +16,70 @@ import org.springframework.transaction.annotation.Transactional;
 public class TodoService {
 
   private final TodoRepository todoRepository;
+  private final ModelMapper modelMapper;
 
   /**
-   * To-Do 한건 저장
+   * 한 건의 할 일을 추가 (쓰기 작업)
+   *
+   * @param todoRequest 추가할 할 일의 요청 값 (TodoDto.Request)
+   * @return 성공적으로 저장된 경우 1 반환
    */
   @Transactional(readOnly = false)
-  public int insertTodoReadOnlyFalse(TodoRequestDto todoRequest) {
-
-    int result = 0;
-
-    todoRepository.save(Todo.builder()
-        .title(todoRequest.getTitle())
-        .description(todoRequest.getDescription())
-        .completed(todoRequest.getCompleted())
-        .build());
-
-    result++;
-
-    return result;
+  public boolean insertTodo(TodoDto.Request todoRequest) {
+    return todoRepository.save(modelMapper.map(todoRequest, TodoEntity.class)).getId() > 0;
   }
 
   /**
-   * To-Do 한건 저장
+   * 한 건의 할 일을 추가 (읽기 작업)
+   *
+   * @param todoRequest 추가할 할 일의 요청 값 (TodoDto.Request)
+   * @return 성공적으로 저장된 경우 1 반환
    */
   @Transactional(readOnly = true)
-  public int insertTodoReadOnlyTrue(TodoRequestDto todoRequest) {
-
-    int result = 0;
-
-    todoRepository.save(Todo.builder()
-        .title(todoRequest.getTitle())
-        .description(todoRequest.getDescription())
-        .completed(todoRequest.getCompleted())
-        .build());
-
-    result++;
-
-    return result;
+  public boolean insertTodoWithReadOnly(TodoDto.Request todoRequest) {
+    return todoRepository.save(modelMapper.map(todoRequest, TodoEntity.class)).getId() > 0;
   }
 
   /**
-   * To-Do 다건 저장
+   * 여러 건의 할 일을 추가
+   *
+   * @param todoRequestList 추가할 할 일의 요청 값 (List&lt;TodoDto.Request&gt;)
+   * @return 성공적으로 완료된 건수
    */
   @Transactional(readOnly = false)
-  public int insertTodos(List<TodoRequestDto> todoRequests) {
+  public int insertTodo(List<TodoDto.Request> todoRequestList) {
 
-    int result = 0;
+    int savedCount = 0;
 
-    for (TodoRequestDto todoRequest : todoRequests) {
-
-      todoRepository.save(Todo.builder()
-          .title(todoRequest.getTitle())
-          .description(todoRequest.getDescription())
-          .completed(todoRequest.getCompleted())
-          .build());
-
-      result++;
+    for (TodoDto.Request todoRequest : todoRequestList) {
+      todoRepository.save(modelMapper.map(todoRequest, TodoEntity.class));
+      savedCount++;
     }
 
-    return result;
+    return savedCount;
   }
 
   /**
-   * To-Do 다건 저장
+   * 여러 건의 할 일을 추가
+   *
+   * @param todoRequestList 추가할 할 일의 요청 값 (List&lt;TodoDto.Request&gt;)
+   * @return 성공적으로 완료된 건수
    */
   @Transactional(readOnly = false)
-  public int insertTodosFailed(List<TodoRequestDto> todoRequests) {
+  public int insertTodoWithValidation(List<TodoDto.Request> todoRequestList) {
 
-    int result = 0;
+    int savedCount = 0;
 
-    for (TodoRequestDto todoRequest : todoRequests) {
+    for (TodoDto.Request todoRequest : todoRequestList) {
 
       if (todoRequest.getTitle().startsWith("#")) {
         throw new RuntimeException("title이 #으로 시작");
       }
 
-      todoRepository.save(Todo.builder()
-          .title(todoRequest.getTitle())
-          .description(todoRequest.getDescription())
-          .completed(todoRequest.getCompleted())
-          .build());
-
-      result++;
+      todoRepository.save(modelMapper.map(todoRequest, TodoEntity.class));
+      savedCount++;
     }
 
-    return result;
+    return savedCount;
   }
 }

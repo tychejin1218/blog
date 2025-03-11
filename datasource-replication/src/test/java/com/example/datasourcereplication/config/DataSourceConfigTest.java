@@ -21,47 +21,62 @@ class DataSourceConfigTest {
 
   @DisplayName("MasterDataSource 설정 테스트")
   @Test
-  void masterDataSourceTest(
+  void testMasterDataSource(
       @Qualifier("masterDataSource") final DataSource masterDataSource) {
 
-    // Given
-    String driverClassName = environment.getProperty("spring.datasource.master.hikari.driver-class-name");
-    String jdbcUrl = environment.getProperty("spring.datasource.master.hikari.jdbc-url");
-    Boolean readOnly = Boolean.valueOf(environment.getProperty("spring.datasource.master.hikari.read-only"));
-    String username = environment.getProperty("spring.datasource.master.hikari.username");
-
-    // When
-    try (HikariDataSource hikariDataSource = (HikariDataSource) masterDataSource) {
-
-      // Then
-      log.info("hikariDataSource : [{}]", hikariDataSource);
-      assertEquals(hikariDataSource.getDriverClassName(), driverClassName);
-      assertEquals(hikariDataSource.getJdbcUrl(), jdbcUrl);
-      assertEquals(hikariDataSource.isReadOnly(), readOnly);
-      assertEquals(hikariDataSource.getUsername(), username);
-    }
+    validateDataSource(
+        masterDataSource,
+        "spring.datasource.master.driver-class-name",
+        "spring.datasource.master.jdbc-url",
+        "spring.datasource.master.read-only",
+        "spring.datasource.master.username"
+    );
   }
 
   @DisplayName("SlaveDataSource 설정 테스트")
   @Test
-  void slaveDataSourceTest(
+  void testSlaveDataSource(
       @Qualifier("slaveDataSource") final DataSource slaveDataSource) {
 
-    // Given
-    String driverClassName = environment.getProperty("spring.datasource.slave.hikari.driver-class-name");
-    String jdbcUrl = environment.getProperty("spring.datasource.slave.hikari.jdbc-url");
-    Boolean readOnly = Boolean.valueOf(environment.getProperty("spring.datasource.slave.hikari.read-only"));
-    String username = environment.getProperty("spring.datasource.slave.hikari.username");
+    validateDataSource(
+        slaveDataSource,
+        "spring.datasource.slave.driver-class-name",
+        "spring.datasource.slave.jdbc-url",
+        "spring.datasource.slave.read-only",
+        "spring.datasource.slave.username"
+    );
+  }
 
-    // When
-    try (HikariDataSource hikariDataSource = (HikariDataSource) slaveDataSource) {
+  /**
+   * 데이터 소스 설정값 검증
+   *
+   * @param dataSource          데이터 소스 객체
+   * @param driverClassNameProp Driver Class Name에 대한 프로퍼티 키
+   * @param jdbcUrlProp         JDBC URL에 대한 프로퍼티 키
+   * @param readOnlyProp        Read-only 여부에 대한 프로퍼티 키
+   * @param usernameProp        데이터베이스 Username에 대한 프로퍼티 키
+   */
+  private void validateDataSource(
+      DataSource dataSource,
+      String driverClassNameProp,
+      String jdbcUrlProp,
+      String readOnlyProp,
+      String usernameProp) {
 
-      // Then
-      log.info("hikariDataSource : [{}]", hikariDataSource);
-      assertEquals(hikariDataSource.getDriverClassName(), driverClassName);
-      assertEquals(hikariDataSource.getJdbcUrl(), jdbcUrl);
-      assertEquals(hikariDataSource.isReadOnly(), readOnly);
-      assertEquals(hikariDataSource.getUsername(), username);
+    // Given: Environment에서 설정 값 조회
+    String driverClassName = environment.getProperty(driverClassNameProp);
+    String jdbcUrl = environment.getProperty(jdbcUrlProp);
+    Boolean readOnly = Boolean.valueOf(environment.getProperty(readOnlyProp));
+    String username = environment.getProperty(usernameProp);
+
+    // When: DataSource에서 실제 값 조회
+    try (HikariDataSource hikariDataSource = (HikariDataSource) dataSource) {
+
+      // Then: 설정 값과 실제 값 비교
+      assertEquals(driverClassName, hikariDataSource.getDriverClassName());
+      assertEquals(jdbcUrl, hikariDataSource.getJdbcUrl());
+      assertEquals(readOnly, hikariDataSource.isReadOnly());
+      assertEquals(username, hikariDataSource.getUsername());
     }
   }
 }

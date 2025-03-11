@@ -2,7 +2,7 @@ package com.example.datasourcereplication.service;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import com.example.datasourcereplication.dto.TodoRequestDto;
+import com.example.datasourcereplication.dto.TodoDto;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
@@ -19,107 +19,65 @@ class TodoServiceTest {
   @Resource
   TodoService todoService;
 
-  @DisplayName("insertTodo_@Transactional(readOnly = true)일 때 한건 저장")
+  @DisplayName("@Transactional(readOnly = false)로 한 건 저장 성공")
   @Test
   void testInsertTodoReadOnlyFalse() {
 
     // Given
-    TodoRequestDto todoRequest = TodoRequestDto.builder()
-        .title("Title Junit Test Insert 01")
-        .description("Description Junit Test Insert 02")
-        .completed(false)
-        .build();
+    TodoDto.Request todoRequest = TodoDto.Request.of("할 일", "할 일 설명", false);
 
     // When
-    int result = todoService.insertTodoReadOnlyFalse(todoRequest);
-    log.info("result:{}", result);
+    boolean isSaved = todoService.insertTodo(todoRequest);
+    log.info("isSaved: {}", isSaved);
 
     // Then
-    Assertions.assertEquals(1, result);
+    Assertions.assertTrue(isSaved);
   }
 
-  @DisplayName("insertTodoReadOnlyTrue_@Transactional(readOnly = true)일 때 한건 저장")
+  @DisplayName("@Transactional(readOnly = true) 트랜잭션으로 저장 실패")
   @Test
   void testInsertTodoReadOnlyTrue() {
 
     // Given
-    TodoRequestDto todoRequest = TodoRequestDto.builder()
-        .title("Title Junit Test")
-        .description("Description Junit Test")
-        .completed(false)
-        .build();
+    TodoDto.Request todoRequest = TodoDto.Request.of("할 일", "할 일 설명", false);
 
     // When & Then
     Exception exception = assertThrows(Exception.class,
-        () -> todoService.insertTodoReadOnlyTrue(todoRequest));
-    log.info("exception:{}", exception);
+        () -> todoService.insertTodoWithReadOnly(todoRequest));
+    log.info("exception: {}", exception);
   }
 
-  @DisplayName("insertTodos_To-Do 다건 저장")
+  @DisplayName("insertTodos: 3건의 할 일 저장 성공")
   @Test
   void testInsertTodos() {
 
     // Given
-    List<TodoRequestDto> todoRequests = new ArrayList<>();
-    todoRequests.add(TodoRequestDto.builder()
-        .title("Title Junit Test 01")
-        .description("Description Junit Test 02")
-        .completed(false)
-        .build());
-    todoRequests.add(TodoRequestDto.builder()
-        .title("Title Junit Test 02")
-        .description("Description Junit Test 02")
-        .completed(false)
-        .build());
-    todoRequests.add(TodoRequestDto.builder()
-        .title("Title Junit Test 03")
-        .description("Description Junit Test 03")
-        .completed(false)
-        .build());
+    List<TodoDto.Request> todoRequestList = new ArrayList<>();
+    todoRequestList.add(TodoDto.Request.of("할 일 1", "할 일 설명 1", false));
+    todoRequestList.add(TodoDto.Request.of("할 일 2", "할 일 설명 2", false));
+    todoRequestList.add(TodoDto.Request.of("할 일 3", "할 일 설명 3", false));
 
     // When
-    int result = 0;
-    try {
-      result = todoService.insertTodos(todoRequests);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+    int savedCount = todoService.insertTodo(todoRequestList);
 
     // Then
-    Assertions.assertEquals(3, result);
+    log.info("Saved count: {}", savedCount);
+    Assertions.assertEquals(3, savedCount);
   }
 
-  @DisplayName("insertTodosFailed_To-Do 다건 저장 시 title이 #으로 시작하는 경우 RuntimeException 발생")
+  @DisplayName("insertTodosWithValidation: 제목이 '#'으로 시작하는 경우 RuntimeException 발생")
   @Test
-  void testInsertTodosFailed() {
+  void testInsertTodosWithValidation() {
 
     // Given
-    List<TodoRequestDto> todoRequests = new ArrayList<>();
-    todoRequests.add(TodoRequestDto.builder()
-        .title("Title Junit Test 01")
-        .description("Description Junit Test 02")
-        .completed(false)
-        .build());
-    todoRequests.add(TodoRequestDto.builder()
-        .title("Title Junit Test 02")
-        .description("Description Junit Test 02")
-        .completed(false)
-        .build());
-    todoRequests.add(TodoRequestDto.builder()
-        .title("#Title Junit Test 03")
-        .description("Description Junit Test 03")
-        .completed(false)
-        .build());
+    List<TodoDto.Request> todoRequestList = new ArrayList<>();
+    todoRequestList.add(TodoDto.Request.of("할 일 1", "할 일 설명 1", false));
+    todoRequestList.add(TodoDto.Request.of("할 일 2", "할 일 설명 2", false));
+    todoRequestList.add(TodoDto.Request.of("#할 일 3", "할 일 설명 3", false));
 
-    // When
-    int result = 0;
-    try {
-      result = todoService.insertTodosFailed(todoRequests);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-    // Then
-    Assertions.assertEquals(0, result);
+    // When & Then
+    Exception exception = assertThrows(RuntimeException.class,
+        () -> todoService.insertTodoWithValidation(todoRequestList));
+    log.info("Validation exception: {}", exception.getMessage());
   }
 }

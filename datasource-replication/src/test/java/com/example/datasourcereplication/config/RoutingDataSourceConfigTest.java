@@ -3,10 +3,12 @@ package com.example.datasourcereplication.config;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.example.datasourcereplication.common.type.DataSourceType;
-import java.lang.reflect.Method;
+import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,43 +16,39 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 class RoutingDataSourceConfigTest {
 
-  private static final String DETERMINE_CURRENT_LOOKUP_KEY = "determineCurrentLookupKey";
+  @Autowired
+  @Qualifier("routingDataSource")
+  private DataSource routingDataSource;
 
-  @Transactional(readOnly = false)
+  @Transactional
   @DisplayName("MasterDataSource Replication 설정 테스트")
   @Test
-  void testMasterDataSourceReplication() throws Exception {
+  void testMasterDataSourceReplication() {
 
     // Given
-    RoutingDataSource routingDataSource = new RoutingDataSource();
+    RoutingDataSource realRoutingDataSource = (RoutingDataSource) routingDataSource;
 
     // When
-    Method declaredMethod = RoutingDataSource.class.getDeclaredMethod(DETERMINE_CURRENT_LOOKUP_KEY);
-    declaredMethod.setAccessible(true);
-
-    Object object = declaredMethod.invoke(routingDataSource);
+    Object currentLookupKey = realRoutingDataSource.determineCurrentLookupKey();
 
     // Then
-    log.info("object : [{}]", object);
-    assertEquals(DataSourceType.MASTER.toString(), object.toString());
+    log.info("Current DataSource Key: {}", currentLookupKey);
+    assertEquals(DataSourceType.MASTER, currentLookupKey);
   }
 
   @Transactional(readOnly = true)
   @DisplayName("SlaveDataSource Replication 설정 테스트")
   @Test
-  void testSlaveDataSourceReplication() throws Exception {
+  void testSlaveDataSourceReplication() {
 
     // Given
-    RoutingDataSource routingDataSource = new RoutingDataSource();
+    RoutingDataSource realRoutingDataSource = (RoutingDataSource) routingDataSource;
 
     // When
-    Method declaredMethod = RoutingDataSource.class.getDeclaredMethod(DETERMINE_CURRENT_LOOKUP_KEY);
-    declaredMethod.setAccessible(true);
-
-    Object object = declaredMethod.invoke(routingDataSource);
+    Object currentLookupKey = realRoutingDataSource.determineCurrentLookupKey();
 
     // Then
-    log.info("object : [{}]", object);
-    assertEquals(DataSourceType.SLAVE.toString(), object.toString());
+    log.info("Current DataSource Key : [{}]", currentLookupKey);
+    assertEquals(DataSourceType.SLAVE, currentLookupKey);
   }
 }

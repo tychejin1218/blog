@@ -1,16 +1,14 @@
 spring:
   datasource:
     master:
-      hikari:
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        jdbc-url: jdbc:mysql://localhost:3306/sample
-        read-only: false
-        username: sample_user
-        password: password1!
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/sample  # Master 설정
+      username: sample
+      password: password1!
+      read-only: false
     slave:
-      hikari:
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        jdbc-url: jdbc:mysql://localhost:3306/sample
-        read-only: true
-        username: sample_user
-        password: password1!
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/sample  # Slave 설정(테스트용 같은 DB)
+      username: sample
+      password: password1!
+      read-only: true
