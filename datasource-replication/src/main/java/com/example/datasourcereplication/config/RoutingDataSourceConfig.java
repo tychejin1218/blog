@@ -103,7 +103,7 @@ public class RoutingDataSourceConfig {
     HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
     hibernateJpaVendorAdapter.setGenerateDdl(false);
     hibernateJpaVendorAdapter.setShowSql(false);
-    hibernateJpaVendorAdapter.setDatabasePlatform("org.hibernate.dialect.MySQL5InnoDBDialect");
+    hibernateJpaVendorAdapter.setDatabasePlatform("org.hibernate.dialect.MySQL8Dialect");
     return hibernateJpaVendorAdapter;
   }
 

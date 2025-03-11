@@ -5,18 +5,18 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import com.example.datasourcereplication.dto.TodoDto;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @Slf4j
 @SpringBootTest
 class TodoServiceTest {
 
-  @Resource
+  @Autowired
   TodoService todoService;
 
   @DisplayName("@Transactional(readOnly = false)로 한 건 저장 성공")
