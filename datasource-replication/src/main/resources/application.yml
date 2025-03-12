@@ -5,10 +5,10 @@ spring:
       jdbc-url: jdbc:mysql://localhost:3306/sample  # Master 설정
       username: sample
       password: password1!
-      read-only: false
+      pool-name: masterDbConnectionPool
     slave:
       driver-class-name: com.mysql.cj.jdbc.Driver
       jdbc-url: jdbc:mysql://localhost:3306/sample  # Slave 설정(테스트용 같은 DB)
       username: sample
       password: password1!
-      read-only: true
+      pool-name: slaveDbConnectionPool

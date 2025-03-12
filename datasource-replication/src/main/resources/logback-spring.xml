@@ -7,8 +7,11 @@
     </encoder>
   </appender>
 
+  <!-- HikariCP 로그 레벨 설정 -->
+  <logger name="com.zaxxer.hikari" level="debug" />
+
   <!-- Root Logger 설정 -->
-  <root level="info">
+  <root level="infod">
     <appender-ref ref="CONSOLE" />
   </root>
 </configuration>
